@@ -3,5 +3,5 @@ Academic Project : "Online portfolio platform for artists: Create a site where a
 
 
 # what you need for Node.js
-npm init
-npm install express mongoose morgan body-parser
+* npm init
+* npm install express mongoose morgan body-parser
