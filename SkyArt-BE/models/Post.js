@@ -1,18 +1,13 @@
 const mongoose = require('mongoose');
 
 const postSchema = new mongoose.Schema({
-    id: {
-        type: String,
-        required: true,
-        unique: true
-    },
     title: {
         type: String,
-        required: true
+        required: [true , 'Please provide title']
     },
     description: {
         type: String,
-        required: true
+        required: [true , 'Please provide description']
     },
     files: {
         type: [String],
@@ -32,7 +27,7 @@ const postSchema = new mongoose.Schema({
             return this.isAsset === true;
         }
     }
-});
+}, {timestamps: true});
 
 const Post = mongoose.model('Post', postSchema);
 
