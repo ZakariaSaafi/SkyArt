@@ -2,7 +2,6 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import mongoose from "mongoose";
-import { errorHandler, notFoundError } from "./middlewares/error-handler.mjs";
 
 
 const app = express();
