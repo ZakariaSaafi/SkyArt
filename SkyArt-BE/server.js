@@ -3,6 +3,7 @@ import morgan from "morgan";
 import cors from "cors";
 import mongoose from "mongoose";
 import router from './routes/post.route.js';
+import eventRouter from './routes/event.route.js';
 
 const app = express();
 
@@ -30,7 +31,7 @@ const PORT = process.env.PORT || 9090;
 const hostname = "127.0.0.1";
 
 app.use("/addPost", router);
-
+app.use("/event",eventRouter);
 
 app.listen(PORT, hostname, ()=>{
     console.log(`server running on http://${hostname}:${PORT}`);
