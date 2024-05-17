@@ -58,7 +58,7 @@ export const deleteEvent = async (req, res) => {
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No event with id: ${id}`);
 
-    await User.findByIdAndRemove(id);
+    await Event.findByIdAndRemove(id);
 
     res.json({ message: "Event deleted successfully." });
 
