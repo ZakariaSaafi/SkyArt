@@ -2,8 +2,9 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import mongoose from "mongoose";
-import router from './routes/post.route.js';
+import router from "./routes/post.route.js";
 
+import userrouter from "./routes/Auth.route.js";
 const app = express();
 
 const databaseName = 'skyart_db';
@@ -28,10 +29,11 @@ app.use(express.static("public"));
 
 const PORT = process.env.PORT || 9090;
 const hostname = "127.0.0.1";
-
 app.use("/addPost", router);
 
 
+app.use("/signup", userrouter);
+app.use("/login", userrouter);
 app.listen(PORT, hostname, ()=>{
     console.log(`server running on http://${hostname}:${PORT}`);
 })
