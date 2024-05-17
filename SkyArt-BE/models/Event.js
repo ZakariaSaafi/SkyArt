@@ -16,12 +16,12 @@ var EventSchema = new Schema({
         type: Date,
         //setting a min function to accept any date one hour ahead of start
         min: [function(){
-          const date = new Date(this.start)
+          const date = new Date(this.fromDate)
           const validDate = new Date(date.setHours(date.getHours()+1)) 
           return validDate
         },"Event End must be at least one hour a head of event time"],
        default: function(){
-         const date = new Date(this.start)
+         const date = new Date(this.fromDate)
          return date.setDate(date.getDate()+1)
        },
        },

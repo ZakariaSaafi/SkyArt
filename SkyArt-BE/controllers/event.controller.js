@@ -1,8 +1,6 @@
-import User from '../models/Event.js';
-import express from 'express';
+import Event from '../models/Event.js';
 import mongoose from 'mongoose';
 
-const router = express.Router();
 
 export const getEvents = async (req, res, next) => {
     
@@ -44,11 +42,11 @@ export const updateEvent = async (req, res) => {
     const { id } = req.params;
     const { title, fromDate, endDate, nbrAttendees, isExpired, organizedBy, link, isPaid} = req.body;
     
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No user with id: ,${id}`);
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No event with id: ,${id}`);
 
     const updatedEvent = { title, fromDate, endDate, nbrAttendees, isExpired, organizedBy, link, isPaid, _id: id };
 
-    await User.findByIdAndUpdate(id, updatedEvent, { new: true });
+    await Event.findByIdAndUpdate(id, updatedEvent, { new: true });
 
     res.json(updatedEvent);
 };
