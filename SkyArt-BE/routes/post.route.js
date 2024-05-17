@@ -1,21 +1,12 @@
 import { Router } from "express";
-import { addPost } from "../controllers/post.controller.js";
+import { addPost, updatePost, getPosts, deletePost} from "../controllers/post.controller.js";
 
 const router = Router();
 
-
-router.post("/addPost", addPost);
-    
-router.post("/updatePost",
-    
-)
-
-router.post("/deletePost",
-    
-)
-
-router.post("/displayPost",
-    
-)
-
+router.route("/")
+.get(getPosts)
+.post(addPost)
+.patch(updatePost)
+.delete(deletePost)
+//router.route("/:id")
 export default router;
