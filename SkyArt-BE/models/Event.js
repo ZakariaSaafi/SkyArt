@@ -12,19 +12,19 @@ var EventSchema = new Schema({
         required: [true, "Please Insert The Start of your event" ],
         min: [new Date(), "can't be before now!!"],
        },
-   /* endDate: {
+    endDate: {
         type: Date,
         //setting a min function to accept any date one hour ahead of start
         min: [function(){
-          const date = new Date(this.start)
+          const date = new Date(this.fromDate)
           const validDate = new Date(date.setHours(date.getHours()+1)) 
           return validDate
         },"Event End must be at least one hour a head of event time"],
        default: function(){
-         const date = new Date(this.start)
+         const date = new Date(this.fromDate)
          return date.setDate(date.getDate()+1)
        },
-       },*/
+       },
     nbrAttendees: Number,
     isExpired: {
         type: Boolean,
