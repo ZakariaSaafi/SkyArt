@@ -2,7 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import mongoose from "mongoose";
-import router from './routes/post.route.js';
+import postRouter from './routes/post.route.js';
 import eventRouter from './routes/event.route.js';
 import userrouter from "./routes/Auth.route.js";
 const app = express();
@@ -29,7 +29,7 @@ app.use(express.static("public"));
 
 const PORT = process.env.PORT || 9090;
 const hostname = "127.0.0.1";
-app.use("/addPost", router);
+app.use("/posts", postRouter);
 app.use("/event",eventRouter);
 app.use("/signup", userrouter);
 app.use("/login", userrouter);
