@@ -2,7 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import mongoose from "mongoose";
-import router from './routes/post.route.js';
+import postRouter from './routes/post.route.js';
 import eventRouter from './routes/event.route.js';
 import orderRouter from './routes/order.route.js';  // Import the order routes
 import paymentRouter from './routes/payments.route.js';  // Import the payment routes
@@ -11,15 +11,20 @@ import dotenv from 'dotenv';
 dotenv.config();
 const app = express();
 
-const databaseName = 'skyart_db';
 
 mongoose.set('debug', true);
 mongoose.Promise = global.Promise;
 
+
+//dotenv variables
+dotenv.config();
+
+const URL = process.env.DB_CONNECT;
+
 mongoose
-  .connect(`mongodb://localhost:27017/${databaseName}`, {family: 4})
+  .connect(URL, {family: 4})
   .then(() => {
-    console.log(`Succefully connected to ${databaseName}`);
+    console.log(`Succefully connected to SkyArt`);
   })
   .catch(err => {
     console.log(err);
@@ -33,8 +38,7 @@ app.use(express.static("public"));
 
 const PORT = process.env.PORT || 9090;
 const hostname = "127.0.0.1";
-
-app.use("/addPost", router);
+app.use("/posts", postRouter);
 app.use("/event",eventRouter);
 app.use("/orders", orderRouter);  // Use order router
 app.use("/payments", paymentRouter);  // Use payment router

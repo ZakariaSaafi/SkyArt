@@ -1,8 +1,6 @@
 import Event from '../models/Event.js';
-import express from 'express';
 import mongoose from 'mongoose';
 
-const router = express.Router();
 
 export const getEvents = async (req, res, next) => {
     
@@ -27,9 +25,9 @@ export const getEvent = async (req, res) => {
 }
 
 export const createEvent = async (req, res) => {
-    const { title, fromDate, nbrAttendees, isExpired, organizedBy, link, isPaid} = req.body;
+    const { title, fromDate, endDate, nbrAttendees, isExpired, organizedBy, link, isPaid} = req.body;
 
-    const newEvent = new Event({ title, fromDate, nbrAttendees, isExpired, organizedBy, link, isPaid })
+    const newEvent = new Event({ title, fromDate, endDate, nbrAttendees, isExpired, organizedBy, link, isPaid })
 
     try {
         await newEvent.save();
@@ -44,11 +42,11 @@ export const updateEvent = async (req, res) => {
     const { id } = req.params;
     const { title, fromDate, endDate, nbrAttendees, isExpired, organizedBy, link, isPaid} = req.body;
     
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No user with id: ,${id}`);
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No event with id: ,${id}`);
 
     const updatedEvent = { title, fromDate, endDate, nbrAttendees, isExpired, organizedBy, link, isPaid, _id: id };
 
-    await User.findByIdAndUpdate(id, updatedEvent, { new: true });
+    await Event.findByIdAndUpdate(id, updatedEvent, { new: true });
 
     res.json(updatedEvent);
 };
@@ -58,8 +56,37 @@ export const deleteEvent = async (req, res) => {
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No event with id: ${id}`);
 
-    await User.findByIdAndRemove(id);
+    await Event.findByIdAndRemove(id);
 
     res.json({ message: "Event deleted successfully." });
 
 };
+
+export const participateEvent = async(req, res) => {
+        const { eventId } = req.params;
+        const { userId } = req.user;
+        try {
+          const event = await Event.findById(eventId);
+          if (!event) {
+            return res.status(404).json({ message: 'Event not found' });
+          }
+      
+          const user = await User.findById(userId);
+          if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+          }
+      
+          if (!event.participants.includes(userId)) {
+            event.participants.push(userId);
+            await event.save();
+          } else {
+            return res.status(400).json({ message: 'User already participating' });
+          }
+      
+          res.status(200).json(event);
+        } catch (err) {
+          res.status(400).json({ message: err.message });
+        }
+      };
+
+
