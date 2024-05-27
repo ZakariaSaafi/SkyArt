@@ -4,10 +4,11 @@ import cors from "cors";
 import mongoose from "mongoose";
 import postRouter from './routes/post.route.js';
 import eventRouter from './routes/event.route.js';
-import userrouter from "./routes/Auth.route.js";
+import orderRouter from './routes/order.route.js';  // Import the order routes
+import paymentRouter from './routes/payments.route.js';  // Import the payment routes
+import dotenv from 'dotenv';
 
-import dotenv from 'dotenv'
-
+dotenv.config();
 const app = express();
 
 
@@ -39,7 +40,8 @@ const PORT = process.env.PORT || 9090;
 const hostname = "127.0.0.1";
 app.use("/posts", postRouter);
 app.use("/event",eventRouter);
-app.use("/user", userrouter);
+app.use("/orders", orderRouter);  // Use order router
+app.use("/payments", paymentRouter);  // Use payment router
 
 
 app.listen(PORT, hostname, ()=>{
