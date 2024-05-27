@@ -4,7 +4,11 @@ import cors from "cors";
 import mongoose from "mongoose";
 import router from './routes/post.route.js';
 import eventRouter from './routes/event.route.js';
+import orderRouter from './routes/order.route.js';  // Import the order routes
+import paymentRouter from './routes/payments.route.js';  // Import the payment routes
+import dotenv from 'dotenv';
 
+dotenv.config();
 const app = express();
 
 const databaseName = 'skyart_db';
@@ -32,6 +36,9 @@ const hostname = "127.0.0.1";
 
 app.use("/addPost", router);
 app.use("/event",eventRouter);
+app.use("/orders", orderRouter);  // Use order router
+app.use("/payments", paymentRouter);  // Use payment router
+
 
 app.listen(PORT, hostname, ()=>{
     console.log(`server running on http://${hostname}:${PORT}`);
