@@ -61,3 +61,32 @@ export const deleteEvent = async (req, res) => {
     res.json({ message: "Event deleted successfully." });
 
 };
+
+export const participateEvent = async(req, res) => {
+        const { eventId } = req.params;
+        const { userId } = req.user;
+        try {
+          const event = await Event.findById(eventId);
+          if (!event) {
+            return res.status(404).json({ message: 'Event not found' });
+          }
+      
+          const user = await User.findById(userId);
+          if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+          }
+      
+          if (!event.participants.includes(userId)) {
+            event.participants.push(userId);
+            await event.save();
+          } else {
+            return res.status(400).json({ message: 'User already participating' });
+          }
+      
+          res.status(200).json(event);
+        } catch (err) {
+          res.status(400).json({ message: err.message });
+        }
+      };
+
+

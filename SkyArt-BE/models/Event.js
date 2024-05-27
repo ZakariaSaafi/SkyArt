@@ -25,6 +25,8 @@ var EventSchema = new Schema({
          return date.setDate(date.getDate()+1)
        },
        },
+       Users: [{
+        Users: { type: Schema.Types.ObjectId, ref: 'User'}}],
     nbrAttendees: Number,
     isExpired: {
         type: Boolean,
