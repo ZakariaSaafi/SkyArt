@@ -1,0 +1,36 @@
+import bcrypt  from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import Artist from '../models/Artist.js';
+
+export const signup = async (req, res) => {
+    try {
+        const { name, email, password, phoneNumber, biohraphy} = req.body;
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const artist = new Artist({ name, email, password: hashedPassword, phoneNumber, biohraphy });
+        await artist.save();
+        res.status(201).json({ message: 'Artist created successfully' });
+    } catch (error) {
+        res.status(500).json({ message: 'An error occurred' });
+    }
+};
+
+export const login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const artist = await Artist.findOne({ email });
+        if (!artist) {
+            return res.status(404).json({ message: 'artist not found' });
+        }
+        const validPassword = await bcrypt.compare(password, artist.password);
+        if (!validPassword) {
+            return res.status(401).json({ message: 'Invalid credentials' });
+        }
+        const token = jwt.sign({ artistId: artist._id }, 'secret_key', { expiresIn: '24h' });
+        res.status(200).json({ token , Artist : artist });
+    } catch (error) {
+        res.status(500).json({ message: 'An error occurred' });
+    }
+};
+
+
+

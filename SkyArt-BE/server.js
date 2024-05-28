@@ -7,9 +7,10 @@ import eventRouter from './routes/event.route.js';
 import orderRouter from './routes/order.route.js';  // Import the order routes
 import paymentRouter from './routes/payments.route.js';  // Import the payment routes
 import dotenv from 'dotenv';
-
+import userrouter from './routes/Auth.route.js';
 dotenv.config();
 const app = express();
+import artistrouter from './routes/Artist.route.js';
 
 
 mongoose.set('debug', true);
@@ -42,7 +43,8 @@ app.use("/posts", postRouter);
 app.use("/event",eventRouter);
 app.use("/orders", orderRouter);  // Use order router
 app.use("/payments", paymentRouter);  // Use payment router
-
+app.use('/user',userrouter); // Use User authentification router
+app.use('/artist',artistrouter); // Use Artist authentification router
 
 app.listen(PORT, hostname, ()=>{
     console.log(`server running on http://${hostname}:${PORT}`);
