@@ -6,7 +6,9 @@ const router = Router();
 router.route("/")
     .get(getCategories)
     .post(addCategory)
-    .patch(updateCategory)
-    .delete(deleteCategory)
-//router.route("/:id")
+
+router.route("/:id")
+.delete(deleteCategory)
+.patch(updateCategory)
+
 export default router;

@@ -6,7 +6,9 @@ const router = Router();
 router.route("/")
 .get(getPosts)
 .post(addPost)
-.patch(updatePost)
+
+router.route("/:id")
 .delete(deletePost)
-//router.route("/:id")
+.patch(updatePost)
+
 export default router;
