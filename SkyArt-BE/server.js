@@ -5,9 +5,9 @@ import mongoose from "mongoose";
 import categoryRoute  from "./routes/category.route.js";
 import postRouter from './routes/post.route.js';
 import eventRouter from './routes/event.route.js';
-import orderRouter from './routes/order.route.js';  // Import the order routes
-import paymentRouter from './routes/payments.route.js';  // Import the payment routes
-import commentRouter from './routes/comment.route.js';  // Import the payment routes
+import orderRouter from './routes/order.route.js';
+import paymentRouter from './routes/payments.route.js';
+import commentRouter from './routes/comment.route.js';
 import userrouter from './routes/Auth.route.js';
 import artistrouter from './routes/Artist.route.js';
 import feedbackrouter from "./routes/feedback.route.js";
