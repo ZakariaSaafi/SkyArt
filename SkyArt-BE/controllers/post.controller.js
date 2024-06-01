@@ -1,10 +1,26 @@
 import Post from "../models/Post.js";
+import Category from "../models/Category.js";
 
 export const addPost = async (req, res) => {
-    await Post.create(req.body)
-    .then(post =>res.status(201).json(post ))
-    .catch(err =>   res.status(409).json({ message: error.message }))
-}
+  try {
+    // Validate if the category exists
+    const category = await Category.findById(req.body.category);
+    if (!category) {
+      return res.status(404).json({ message: 'Category not found' });
+    }
+
+    const post = await Post.create(req.body);
+    res.status(201).json(post);
+  } catch (error) {
+    if (error.name === 'ValidationError') {
+      res.status(400).json({ message: error.message });
+    } else if (error.code === 11000) { // Duplicate key error
+      res.status(409).json({ message: 'Duplicate key error' });
+    } else {
+      res.status(500).json({ message: error.message });
+    }
+  }
+};
 
 export const getPosts = async (req, res) => {
     try {

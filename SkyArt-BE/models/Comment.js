@@ -1,22 +1,18 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const commentSchema = new mongoose.Schema({
-    id: {
-        type: String,
-        required: true,
-        unique: true
-    },
     date: {
         type: Date,
-        required: true,
         default: Date.now
     },
     text: {
         type: String,
         required: true
+    },
+    postId: {
+        type: String,
+        required: true
     }
-});
+}, {timestamps: true});
 
-const Comment = mongoose.model('Comment', commentSchema);
-
-module.exports = Comment;
+export default mongoose.model('Comment', commentSchema);
