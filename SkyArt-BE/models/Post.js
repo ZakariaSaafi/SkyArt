@@ -25,6 +25,11 @@ const postSchema = new mongoose.Schema({
         required: function() {
             return this.isAsset === true;
         }
+    },
+    category: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category',
+        required: true
     }
 }, {timestamps: true});
 

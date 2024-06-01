@@ -1,17 +1,11 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const ratingSchema = new mongoose.Schema({
-    id: {
-        type: String,
-        required: true,
-        unique: true
-    },
     level: {
         type: String,
         required: true
     }
-});
+}, {timestamps: true});
 
-const Rating = mongoose.model('Rating', ratingSchema);
+export default mongoose.model('Rating', ratingSchema);
 
-module.exports = Rating;
