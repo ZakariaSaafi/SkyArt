@@ -8,15 +8,10 @@ const feedbackSchema = new Schema(
       ref: 'User',
       required: true
     },
-    targetId: {
-      type: Types.ObjectId,
-      required: true,
-      refPath: 'onModel'
-    },
-    onModel: {
-      type: String,
-      required: true,
-      enum: ['Post', 'Event', 'User']
+    postId : {
+        type: Types.ObjectId,
+        ref : 'Post',
+        required : true
     },
     text: {
       type: String,

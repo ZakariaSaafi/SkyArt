@@ -10,10 +10,10 @@ export const createFeedback = async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { userId, targetId, onModel, text } = req.body;
+  const { userId, postId , text } = req.body;
 
   try {
-    const feedback = new Feedback({ userId, targetId, onModel, text });
+    const feedback = new Feedback({ userId, postId, text });
     await feedback.save();
 
     // Retrieve admin ID and email (assuming a single admin user for simplicity)

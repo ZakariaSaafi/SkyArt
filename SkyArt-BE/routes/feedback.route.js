@@ -8,8 +8,7 @@ router.post(
   '/',
   [
     body('userId').isMongoId(),
-    body('targetId').isMongoId(),
-    body('onModel').isIn(['Post', 'Event', 'User']),
+    body('postId').isIn(['Post', 'Event', 'User']),
     body('text').isString()
   ],
   createFeedback
