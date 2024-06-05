@@ -27,7 +27,7 @@ export const addComment = async (req, res) => {
 // Get all comments
 export const getComments = async (req, res) => {
     try {
-        const comments = await Comment.find().populate('post');
+        const comments = await Comment.find().populate('postId');
         res.status(200).json(comments);
     } catch (error) {
         res.status(500).json({ message: error.message });
