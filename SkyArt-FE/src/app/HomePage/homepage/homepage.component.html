@@ -19,7 +19,7 @@
       <div class="col-12">
         <nav class="main-nav">
           <!-- ***** Logo Start ***** -->
-          <a href="index.html" class="logo">
+          <a [routerLink]="['']" class="logo">
             <img src="assets/images/SkyArt-logo.png" alt="">
           </a>
           <!-- ***** Logo End ***** -->
@@ -34,10 +34,10 @@
           <!-- ***** Menu Start ***** -->
           <ul class="nav">
             <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="browse.html">Posts</a></li>
+            <li><a [routerLink]="['/posts-search-page']">Posts</a></li>
             <li><a href="details.html">Categories</a></li>
             <li><a href="streams.html">Events</a></li>
-            <li><a href="profile.html">Profile<img src="assets/images/profile-header.jpg" alt=""></a></li>
+            <li><a href="profile.html">Login<img src="assets/images/profile-header.jpg" alt=""></a></li>
           </ul>
           <a class='menu-trigger'>
             <span>Menu</span>
@@ -79,92 +79,17 @@
                 <h4><em>Most Popular</em> Artworks</h4>
               </div>
               <div class="row">
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-3 col-sm-6" *ngFor="let p of posts">
                   <div class="item">
                     <img src="assets/images/popular-01.jpg" alt="">
-                    <h4>Starry Night<br><span>Post-Impressionism</span></h4>
+                    <h4>{{ p.title }}<br><span>{{p.description}}</span></h4>
                     <ul>
                       <li><i class="fa fa-star"></i> 4.8</li>
                       <li><i class="fa fa-download"></i> 2.3M</li>
                     </ul>
                   </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
-                  <div class="item">
-                    <img src="assets/images/popular-02.jpg" alt="">
-                    <h4>Mona Lisa<br><span>Renaissance</span></h4>
-                    <ul>
-                      <li><i class="fa fa-star"></i> 4.8</li>
-                      <li><i class="fa fa-download"></i> 2.3M</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                  <div class="item">
-                    <img src="assets/images/popular-03.jpg" alt="">
-                    <h4>The Persistence of Memory<br><span>Surrealism</span></h4>
-                    <ul>
-                      <li><i class="fa fa-star"></i> 4.8</li>
-                      <li><i class="fa fa-download"></i> 2.3M</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                  <div class="item">
-                    <img src="assets/images/popular-04.jpg" alt="">
-                    <h4>The Scream<br><span>Expressionism</span></h4>
-                    <ul>
-                      <li><i class="fa fa-star"></i> 4.8</li>
-                      <li><i class="fa fa-download"></i> 2.3M</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="item">
-                    <div class="row">
-                      <div class="col-lg-6 col-sm-6">
-                        <div class="item inner-item">
-                          <img src="assets/images/popular-05.jpg" alt="">
-                          <h4>Girl with a Pearl Earring<br><span>Baroque</span></h4>
-                          <ul>
-                            <li><i class="fa fa-star"></i> 4.8</li>
-                            <li><i class="fa fa-download"></i> 2.3M</li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="col-lg-6 col-sm-6">
-                        <div class="item">
-                          <img src="assets/images/popular-06.jpg" alt="">
-                          <h4>The Birth of Venus<br><span>Early Renaissance</span></h4>
-                          <ul>
-                            <li><i class="fa fa-star"></i> 4.8</li>
-                            <li><i class="fa fa-download"></i> 2.3M</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                  <div class="item">
-                    <img src="assets/images/popular-07.jpg" alt="">
-                    <h4>Guernica<br><span>Cubism</span></h4>
-                    <ul>
-                      <li><i class="fa fa-star"></i> 4.8</li>
-                      <li><i class="fa fa-download"></i> 2.3M</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                  <div class="item">
-                    <img src="assets/images/popular-08.jpg" alt="">
-                    <h4>American Gothic<br><span>Regionalism</span></h4>
-                    <ul>
-                      <li><i class="fa fa-star"></i> 4.8</li>
-                      <li><i class="fa fa-download"></i> 2.3M</li>
-                    </ul>
-                  </div>
-                </div>
+
                 <div class="col-lg-12">
                   <div class="main-button">
                     <a href="browse.html">Discover Popular</a>
