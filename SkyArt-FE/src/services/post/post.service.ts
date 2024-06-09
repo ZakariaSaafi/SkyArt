@@ -11,4 +11,16 @@ export class PostService {
   public getPost(){
     return this.http.get(this.URL);
   }
+
+  public updatePost(postId:any){
+    return this.http.patch(this.URL, postId);
+  }
+
+  public deletePost(postId: any){
+    return this.http.delete(this.URL, postId);
+  }
+
+  public addPost(formData: any){
+    return this.http.post(this.URL, formData);
+  }
 }
