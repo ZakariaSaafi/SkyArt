@@ -1,35 +1,24 @@
-import mongoose from 'mongoose';
-const { Schema, model, Types } = mongoose;
+import mongoose from "mongoose";
 
-const feedbackSchema = new Schema(
-  {
-    userId: {
-      type: Types.ObjectId,
-      ref: 'User',
-      required: true
+const FeedbackSchema = new mongoose.Schema({
+    sender: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     },
-    targetId: {
-      type: Types.ObjectId,
-      required: true,
-      refPath: 'onModel'
+    receiver: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     },
-    onModel: {
-      type: String,
-      required: true,
-      enum: ['Post', 'Event', 'User']
+    message: {
+        type: String,
+        required: [true, 'Please provide a message']
     },
-    text: {
-      type: String,
-      required: true
-    },
-    date: {
-      type: Date,
-      default: Date.now
+    isRead: {
+        type: Boolean,
+        default: false
     }
-  },
-  {
-    timestamps: true
-  }
-);
+}, {timestamps: true});
 
-export default mongoose.model('Feedback', feedbackSchema);
+export default mongoose.model('Feedback', FeedbackSchema);

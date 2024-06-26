@@ -1,81 +1,36 @@
-import Feedback from '../models/Feedback.js';
-import { validationResult } from 'express-validator';
-import sendEmail from '../config/emailConfig.js';
-import User from '../models/User.js';
-import Notification from '../models/Notification.js';
+import asyncHandler from 'express-async-handler';
+import Feedback from "../models/Feedback.js";
 
-export const createFeedback = async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
 
-  const { userId, targetId, onModel, text } = req.body;
+// @desc    Send a message
+// @route   POST /api/feedback
+// @access  Private
+const sendMessage = asyncHandler(async (req, res) => {
+  const { receiverId, message } = req.body;
 
-  try {
-    const feedback = new Feedback({ userId, targetId, onModel, text });
-    await feedback.save();
+  // Ensure req.user._id is set correctly from middleware
+  const senderId = req.userData.userId;
 
-    // Retrieve admin ID and email (assuming a single admin user for simplicity)
-    const admin = await User.findOne({ role: 'admin' }); // Adjust the query as needed
+  const feedback = new Feedback({
+    sender: senderId,
+    receiver: receiverId,
+    message,
+  });
 
-    if (admin) {
-      // Send email to the admin
-      sendEmail(admin.email, 'New Feedback Received', `You have received new feedback from user ${userId}.`);
-    
-    // Create a notification for the admin
-    const notification = new Notification({
-        userId: admin._id,
-        message: `You have received new feedback from user ${userId}.`
-      });
-      await notification.save();
-    }
+  const createdFeedback = await feedback.save();
 
-    res.status(201).json(feedback);
-  } catch (error) {
-    res.status(500).send('Server Error');
-  }
-};
+  res.status(201).json(createdFeedback);
+});
 
-export const getFeedback = async (req, res) => {
-  try {
-    const feedbacks = await Feedback.find().populate('userId').populate('targetId');
-    res.status(200).json(feedbacks);
-  } catch (error) {
-    res.status(500).send('Server Error');
-  }
-};
+// @desc    Get messages
+// @route   GET /api/feedback
+// @access  Private
+const getMessages = asyncHandler(async (req, res) => {
+  const feedbacks = await Feedback.find({
+    $or: [{ sender: req.userData.userId }, { receiver: req.userData.userId }]
+  }).populate('sender', 'name email').populate('receiver', 'name email');
 
-export const updateFeedback = async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
+  res.json(feedbacks);
+});
 
-  const { id } = req.params;
-  const { text } = req.body;
-
-  try {
-    const feedback = await Feedback.findByIdAndUpdate(id, { text }, { new: true });
-    if (!feedback) {
-      return res.status(404).send('Feedback not found');
-    }
-    res.status(200).json(feedback);
-  } catch (error) {
-    res.status(500).send('Server Error');
-  }
-};
-
-export const deleteFeedback = async (req, res) => {
-  const { id } = req.params;
-
-  try {
-    const feedback = await Feedback.findByIdAndDelete(id);
-    if (!feedback) {
-      return res.status(404).send('Feedback not found');
-    }
-    res.status(200).send('Feedback deleted');
-  } catch (error) {
-    res.status(500).send('Server Error');
-  }
-};
+export { sendMessage, getMessages };
