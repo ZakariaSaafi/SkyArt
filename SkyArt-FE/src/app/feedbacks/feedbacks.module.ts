@@ -12,7 +12,6 @@ import { AdminChatComponent } from './admin-chat/admin-chat.component';
   declarations: [
     ChatComponent,
     AdminChatComponent,
-
   ],
   imports: [
     CommonModule,

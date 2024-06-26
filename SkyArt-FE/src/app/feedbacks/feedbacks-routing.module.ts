@@ -7,7 +7,6 @@ import {AdminChatComponent} from "./admin-chat/admin-chat.component";
 
 const routes: Routes = [
   { path: '', component: ChatComponent },
-
   { path: 'admin', component: AdminChatComponent },
 
 ];

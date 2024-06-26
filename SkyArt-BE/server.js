@@ -11,8 +11,7 @@ import commentRouter from './routes/comment.route.js';
 import userrouter from './routes/Auth.route.js';
 import artistrouter from './routes/Artist.route.js';
 import feedbackrouter from "./routes/feedback.route.js";
-import responserouter from "./routes/response.route.js";
-import notificationrouter from "./routes/notification.route.js";
+
 
 import dotenv from 'dotenv';
 
@@ -51,8 +50,8 @@ app.use('/user',userrouter);
 app.use('/artist',artistrouter);
 app.use("/comment", commentRouter);
 app.use("/feedback", feedbackrouter);
-app.use("/responses", responserouter);
-app.use("/notifications", notificationrouter);
+
+
 
 
 app.listen(PORT, hostname, ()=>{

@@ -44,15 +44,13 @@ const getEmailContent = (isAdmin, senderUsername) => {
 // @route   POST /api/feedback
 // @access  Private
 const sendMessage = asyncHandler(async (req, res) => {
-  const { receiverId, message, parentMessageId } = req.body;
+  const { receiverId, message } = req.body;
   const senderId = req.userData.userId;
 
   const feedback = new Feedback({
     sender: senderId,
     receiver: receiverId,
     message,
-    parentMessage: parentMessageId || null,
-    isReply: !!parentMessageId
   });
 
   const createdFeedback = await feedback.save();
@@ -81,7 +79,7 @@ const sendMessage = asyncHandler(async (req, res) => {
 const getMessages = asyncHandler(async (req, res) => {
   const feedbacks = await Feedback.find({
     $or: [{ sender: req.userData.userId }, { receiver: req.userData.userId }]
-  }).populate('sender', 'name email').populate('receiver', 'name email').populate('parentMessage');
+  }).populate('sender', 'name email').populate('receiver', 'name email')
 
   res.json(feedbacks);
 });
@@ -114,7 +112,7 @@ const getUserMessages = asyncHandler(async (req, res) => {
       { sender: userId, receiver: req.userData.userId },
       { sender: req.userData.userId, receiver: userId }
     ]
-  }).populate('sender', 'name email').populate('receiver', 'name email').populate('parentMessage');
+  }).populate('sender', 'name email').populate('receiver', 'name email')
 
   res.json(feedbacks);
 });
