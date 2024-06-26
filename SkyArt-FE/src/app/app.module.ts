@@ -13,6 +13,10 @@ import { LoginPageComponent } from './AuthentificationPage/login-page/login-page
 import { SignupPageComponent } from './AuthentificationPage/signup-page/signup-page.component';
 import { HeaderComponent } from './HomePage/header/header.component';
 import { FooterComponent } from './HomePage/footer/footer/footer.component';
+import { UserProfileComponent } from './UserProfile/user-profile/user-profile.component';
+import { AddNewPostPageComponent } from './PostPage/add-new-post-page/add-new-post-page.component';
+import {FormsModule} from "@angular/forms";
+import { EditProfileComponent } from './UserProfile/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -25,12 +29,16 @@ import { FooterComponent } from './HomePage/footer/footer/footer.component';
     LoginPageComponent,
     SignupPageComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    UserProfileComponent,
+    AddNewPostPageComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

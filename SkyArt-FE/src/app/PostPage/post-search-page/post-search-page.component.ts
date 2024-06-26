@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PostService} from "../../../services/post/post.service";
 
 @Component({
   selector: 'app-post-search-page',
@@ -6,10 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./post-search-page.component.css']
 })
 export class PostSearchPageComponent implements OnInit {
-
-  constructor() { }
+  public posts:any;
+  public errorMsg:any;
+  constructor(private postService: PostService) { }
 
   ngOnInit(): void {
+    this.postService.getPost().subscribe(
+      (data:any)=>{
+        this.posts = data;
+        console.log(this.posts);
+      },error => {
+        console.log(error);
+        this.errorMsg  = error;
+      }
+    );
   }
 
 }

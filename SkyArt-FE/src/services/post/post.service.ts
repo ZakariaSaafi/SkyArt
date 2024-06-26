@@ -11,7 +11,9 @@ export class PostService {
   public getPost(){
     return this.http.get(this.URL);
   }
-
+  public getPostById(id:any){
+    return this.http.get(this.URL + "/" + id);
+  }
   public updatePost(postId:any){
     return this.http.patch(this.URL, postId);
   }
