@@ -4,9 +4,13 @@ import  User from '../models/User.js';
 
 export const signup = async (req, res) => {
     try {
+        let imagePath = null;
+        if (req.file) {
+            imagePath = req.file.path;
+    }
         const { name, email, password } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = new User({ name, email, password: hashedPassword });
+        const user = new User({ name, email, password: hashedPassword, image: imagePath });
         await user.save();
         res.status(201).json({ message: 'User created successfully' });
     } catch (error) {
