@@ -7,25 +7,22 @@ const artistSchema = new mongoose.Schema({
         type: String,
         required: [true]
     },
-    followers : {
-        type: [String],
-        required: [true]
-    },
-    following : {
-        type: [String],
-        required: [true]
-    }, 
-    biohraphy : {
+    bioghraphy : {
         type: String,
         required: [true]
     },
     ratings: [
         {
-            userId: { type: String, required: true },
-            rating: { type: Number, required: true, min: 1, max: 5 }
+            userId: { type: String },
+            rating: { type: Number, min: 1, max: 5 }
         }
     ],
-    averageRating: { type: Number, default: 0 }
+    averageRating: { 
+        type: Number, default: 0
+     },
+     following: [{ 
+       type : String
+     }]
 });
 
 // La methode de calcule le moyenne de rating
