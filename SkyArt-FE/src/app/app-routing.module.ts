@@ -13,7 +13,8 @@ const routes: Routes = [
   {path: "categories-search-page", component: CategoriesSearchPageComponent},
   {path: "events-search-page", component: EventSearchPageComponent},
   {path: "login-page", component: LoginPageComponent},
-  {path: "signup-page", component: SignupPageComponent}
+  {path: "signup-page", component: SignupPageComponent},
+  { path: 'feedback', loadChildren: () => import('./feedbacks/feedbacks.module').then(m => m.FeedbacksModule) }
 ];
 
 @NgModule({

@@ -18,7 +18,16 @@ const FeedbackSchema = new mongoose.Schema({
     isRead: {
         type: Boolean,
         default: false
+    },
+    isReply: {
+        type: Boolean,
+        default: false
+    },
+    parentMessage: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Feedback',
+        default: null
     }
-}, {timestamps: true});
+}, { timestamps: true });
 
 export default mongoose.model('Feedback', FeedbackSchema);

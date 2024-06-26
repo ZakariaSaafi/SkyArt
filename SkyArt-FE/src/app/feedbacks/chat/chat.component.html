@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="page-content">
+
+        <!-- ***** Banner Start ***** -->
+        <div class="main-banner">
+          <div class="row">
+            <div class="col-lg-7">
+              <div class="header-text">
+                <h6>Welcome To SkyArt Support</h6>
+                <h4><em>Talk</em> To Support About Your Issue</h4>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- ***** Banner End ***** -->
+
+        <!-- ***** Chat Section Start ***** -->
+        <div class="chat-section">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="heading-section">
+                <h4><em>Chat with</em> Admin</h4>
+              </div>
+              <div class="chat-card">
+                <div class="chat-body">
+                  <div *ngFor="let feedback of feedbacks" class="message"
+                       [ngClass]="{ incoming: feedback.sender._id !== userId, outgoing: feedback.sender._id === userId }">
+                    <p>{{ feedback.message }}</p>
+                  </div>
+                </div>
+                <div class="chat-footer">
+                  <input [(ngModel)]="message" placeholder="Type your message" type="text" class="form-control">
+                  <button (click)="sendMessage()" class="btn btn-primary">Send</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ***** Chat Section End ***** -->
+
+      </div>
+    </div>
+  </div>
+</div>

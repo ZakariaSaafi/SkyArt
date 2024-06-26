@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import asyncHandler from 'express-async-handler';
+import User from "../models/User.js";
 const authMiddleware = (req, res, next) => {
     try {
         const token = req.headers.authorization.split(' ')[1];

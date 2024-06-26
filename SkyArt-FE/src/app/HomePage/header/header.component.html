@@ -23,6 +23,8 @@
             <li><a [routerLink]="['/posts-search-page']">Posts</a></li>
             <li><a [routerLink]="['/categories-search-page']">Categories</a></li>
             <li><a [routerLink]="['/events-search-page']">Events</a></li>
+            <li *ngIf="!user.isAdmin"><a [routerLink]="['/feedback']">Feedback</a></li>
+            <li *ngIf="user.isAdmin"><a [routerLink]="['/feedback/admin']">Feedback</a></li>
             <li><a [routerLink]="['/login-page']">Login<img src="assets/images/profile-header.jpg" alt=""></a></li>
           </ul>
           <a class='menu-trigger'>
