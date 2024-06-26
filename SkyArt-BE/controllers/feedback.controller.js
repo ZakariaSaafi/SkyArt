@@ -1,6 +1,44 @@
 import asyncHandler from 'express-async-handler';
 import Feedback from "../models/Feedback.js";
 import User from "../models/User.js";
+import sendEmail from "../config/emailConfig.js";
+
+
+
+const getEmailContent = (isAdmin, senderUsername) => {
+  const appUrl = 'http://localhost:4200/feedback'; // Replace with your actual app URL
+  const appUrlAdmin = 'http://localhost:4200/feedback/admin'; // Replace with your actual app URL
+
+  if (isAdmin) {
+    return {
+      subject: 'You received a feedback',
+      text: `You received a feedback from ${senderUsername}.`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #007bff; border-radius: 10px; background-color: #f1f1f1;">
+          <h2 style="color: #007bff; text-align: center;">You received a feedback</h2>
+          <p style="color: #555; text-align: center;">You received a feedback from <strong>${senderUsername}</strong>.</p>
+          <div style="text-align: center; margin-top: 20px;">
+            <a href="${appUrlAdmin}" style="display: inline-block; padding: 10px 20px; background-color: #28a745; color: #fff; text-decoration: none; border-radius: 5px;">Go to Chat</a>
+          </div>
+        </div>
+      `
+    };
+  } else {
+    return {
+      subject: 'You received a message from support',
+      text: `You received a message from the support team.`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #007bff; border-radius: 10px; background-color: #f1f1f1;">
+          <h2 style="color: #007bff; text-align: center;">You received a message from support</h2>
+          <p style="color: #555; text-align: center;">You received a message from the support team.</p>
+          <div style="text-align: center; margin-top: 20px;">
+            <a href="${appUrl}" style="display: inline-block; padding: 10px 20px; background-color: #28a745; color: #fff; text-decoration: none; border-radius: 5px;">Go to Chat</a>
+          </div>
+        </div>
+      `
+    };
+  }
+};
 
 // @desc    Send a message
 // @route   POST /api/feedback
@@ -18,6 +56,21 @@ const sendMessage = asyncHandler(async (req, res) => {
   });
 
   const createdFeedback = await feedback.save();
+
+  // Fetch sender and receiver information
+  const sender = await User.findById(senderId);
+  const receiver = await User.findById(receiverId);
+
+  if (!sender || !receiver) {
+    res.status(404).json({ message: 'User not found' });
+    return;
+  }
+
+  // Determine the email content based on receiver's role
+  const { subject, text, html } = getEmailContent(receiver.isAdmin, sender.name);
+
+  // Send email
+  sendEmail(receiver.email, subject, text, html);
 
   res.status(201).json(createdFeedback);
 });
