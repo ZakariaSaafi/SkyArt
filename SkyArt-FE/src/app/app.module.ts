@@ -15,6 +15,8 @@ import { HeaderComponent } from './HomePage/header/header.component';
 import { FooterComponent } from './HomePage/footer/footer/footer.component';
 import { UserProfileComponent } from './UserProfile/user-profile/user-profile.component';
 import { AddNewPostPageComponent } from './PostPage/add-new-post-page/add-new-post-page.component';
+import {FormsModule} from "@angular/forms";
+import { EditProfileComponent } from './UserProfile/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -29,12 +31,14 @@ import { AddNewPostPageComponent } from './PostPage/add-new-post-page/add-new-po
     HeaderComponent,
     FooterComponent,
     UserProfileComponent,
-    AddNewPostPageComponent
+    AddNewPostPageComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

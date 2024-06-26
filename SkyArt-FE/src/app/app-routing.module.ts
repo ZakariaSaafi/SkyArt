@@ -8,16 +8,21 @@ import {LoginPageComponent} from "./AuthentificationPage/login-page/login-page.c
 import {SignupPageComponent} from "./AuthentificationPage/signup-page/signup-page.component";
 import {UserProfileComponent} from "./UserProfile/user-profile/user-profile.component";
 import {AddNewPostPageComponent} from "./PostPage/add-new-post-page/add-new-post-page.component";
+import {EditProfileComponent} from "./UserProfile/edit-profile/edit-profile.component";
+import {PostDetailPageComponent} from "./PostPage/post-detail-page/post-detail-page.component";
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
   {path: "posts-search-page", component: PostSearchPageComponent},
+  {path: "post-detail-page/:id", component: PostDetailPageComponent},
   {path: "add-new-post-page", component: AddNewPostPageComponent},
   {path: "categories-search-page", component: CategoriesSearchPageComponent},
   {path: "events-search-page", component: EventSearchPageComponent},
   {path: "login-page", component: LoginPageComponent},
   {path: "signup-page", component: SignupPageComponent},
-  {path: "profile", component: UserProfileComponent}
+  {path: "profile", component: UserProfileComponent},
+  {path: "edit-profile", component: EditProfileComponent },
+
 ];
 
 @NgModule({
