@@ -4,13 +4,18 @@ import Artist from '../models/Artist.js';
 
 export const signup = async (req, res) => {
     try {
-        const { name, email, password, phoneNumber, biohraphy} = req.body;
+        let imagePath = null;
+        if (req.file) {
+            imagePath = req.file.path;
+    }
+        const { name, email, password, phoneNumber, bioghraphy} = req.body;
         const hashedPassword = await bcrypt.hash(password, 10);
-        const artist = new Artist({ name, email, password: hashedPassword, phoneNumber, biohraphy });
+        const artist = new Artist({ name, email, password: hashedPassword, phoneNumber, bioghraphy, image: imagePath });
         await artist.save();
         res.status(201).json({ message: 'Artist created successfully' });
     } catch (error) {
         res.status(500).json({ message: 'An error occurred' });
+        console.log(error);
     }
 };
 

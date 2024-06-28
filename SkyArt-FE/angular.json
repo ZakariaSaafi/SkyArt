@@ -23,13 +23,27 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "src/skyartlogo.ico",
+              "src/assets",
+              "src/vendor"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/vendor/bootstrap/css/bootstrap.min.css",
+              "src/assets/css/fontawesome.css",
+              "src/assets/css/templatemo-cyborg-gaming.css",
+              "src/assets/css/owl.css",
+              "src/assets/css/animate.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/vendor/jquery/jquery.min.js",
+              "src/vendor/bootstrap/js/bootstrap.min.js",
+              "src/assets/js/isotope.min.js",
+              "src/assets/js/owl-carousel.js",
+              "src/assets/js/tabs.js",
+              "src/assets/js/popup.js",
+              "src/assets/js/custom.js"
+            ]
           },
           "configurations": {
             "production": {

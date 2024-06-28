@@ -1,0 +1,243 @@
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="page-content">
+
+        <!-- ***** Featured Games Start ***** -->
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="most-popular header-text mt-0">
+              <div class="heading-section">
+                <h4><em>Most Popular</em> Artworks</h4>
+              </div>
+                <div class="row" *ngIf="posts.length > 0; else emptyPanel">
+                  <div class="col-lg-3 col-sm-6" *ngFor="let p of posts">
+                    <div class="item" [routerLink]="['/post-detail-page',p._id]">
+                      <img src="assets/images/popular-01.jpg" alt="{{p.title}}">
+                      <h4>{{ p.title }}<br><span>{{p.description}}</span></h4>
+                      <ul>
+                        <li><i class="fa fa-star"></i> 4.8</li>
+                        <li><i class="fa fa-download"></i> 2.3M</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <ng-template #emptyPanel>
+                  <div class="empty-panel">
+                    <p>No posts available.</p>
+                  </div>
+                </ng-template>
+              </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="top-downloaded">
+              <div class="heading-section">
+                <h4><em>Popular</em> Artists</h4>
+              </div>
+              <ul>
+                <li>
+                  <img src="assets/images/avatar-01.jpg" alt="" class="templatemo-item">
+                  <h4>KenganC</h4>
+                  <h6>UI/UX Designer</h6>
+                  <span><i class="fa fa-star" style="color: yellow;"></i> 4.9</span>
+                  <span><i class="fa fa-download" style="color: #ec6090;"></i> 2.2K</span>
+                  <div class="download">
+                    <a href="#"><i class="fa fa-download"></i></a>
+                  </div>
+                </li>
+                <li>
+                  <img src="assets/images/avatar-04.jpg" alt="" class="templatemo-item">
+                  <h4>GangTm</h4>
+                  <h6>UI/UX Designer</h6>
+                  <span><i class="fa fa-star" style="color: yellow;"></i> 4.2</span>
+                  <span><i class="fa fa-download" style="color: #ec6090;"></i> 1.8K</span>
+                  <div class="download">
+                    <a href="#"><i class="fa fa-download"></i></a>
+                  </div>
+                </li>
+                <li>
+                  <img src="assets/images/avatar-03.jpg" alt="" class="templatemo-item">
+                  <h4>Areluwa</h4>
+                  <h6>UI/UX Designer</h6>
+                  <span><i class="fa fa-star" style="color: yellow;"></i> 4.1</span>
+                  <span><i class="fa fa-download" style="color: #ec6090;"></i> 1.2K</span>
+                  <div class="download">
+                    <a href="#"><i class="fa fa-download"></i></a>
+                  </div>
+                </li>
+              </ul>
+              <div class="text-button">
+                <a href="profile.html">View All Artists</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ***** Featured Games End ***** -->
+
+        <!-- ***** Start Stream Start ***** -->
+        <div class="start-stream">
+          <div class="col-lg-12">
+            <div class="heading-section">
+              <h4><em>How To Create Your</em>  Online Portfolio</h4>
+            </div>
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="item">
+                  <div class="icon">
+                    <img src="assets/images/service-01.jpg" alt="" style="max-width: 60px; border-radius: 50%;">
+                  </div>
+                  <h4>Create Your Profile</h4>
+                  <p>Guide users on how to create a detailed profile that highlights their artistic skills and achievements.</p>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="item">
+                  <div class="icon">
+                    <img src="assets/images/service-02.jpg" alt="" style="max-width: 60px; border-radius: 50%;">
+                  </div>
+                  <h4>Upload Your Artworks</h4>
+                  <p>Explain the steps to upload and organize their artworks into different categories. Showcase your talent.</p>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="item">
+                  <div class="icon">
+                    <img src="assets/images/service-03.jpg" alt="" style="max-width: 60px; border-radius: 50%;">
+                  </div>
+                  <h4>Share Your Portfolio</h4>
+                  <p>Provide instructions on how to share their portfolio link on social media and other platforms to gain visibility.</p>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="main-button">
+                  <a [routerLink]="['/login-page']">Joins us now!</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ***** Start Stream End ***** -->
+
+        <!-- ***** Live Stream Start ***** -->
+        <div class="live-stream">
+          <div class="col-lg-12">
+            <div class="heading-section">
+              <h4><em>Most Popular</em> Sold Artworks</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3 col-sm-6">
+              <div class="item">
+                <div class="thumb">
+                  <img src="assets/images/clip-02.jpg" alt="">
+                  <div class="hover-effect">
+                    <div class="content">
+                      <div class="live">
+                        <a href="#">Live</a>
+                      </div>
+                      <ul>
+                        <li><a href="#"><i class="fa fa-eye"></i> 1.2K</a></li>
+                        <li><a href="#"><i class="fa fa-gamepad"></i> CS-GO</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="down-content">
+                  <div class="avatar">
+                    <img src="assets/images/avatar-01.jpg" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
+                  </div>
+                  <span><i class="fa fa-check"></i> KenganC</span>
+                  <h4>Just Talking With Fans</h4>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+              <div class="item">
+                <div class="thumb">
+                  <img src="assets/images/clip-03.jpg" alt="">
+                  <div class="hover-effect">
+                    <div class="content">
+                      <div class="live">
+                        <a href="#">Live</a>
+                      </div>
+                      <ul>
+                        <li><a href="#"><i class="fa fa-eye"></i> 1.2K</a></li>
+                        <li><a href="#"><i class="fa fa-gamepad"></i> CS-GO</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="down-content">
+                  <div class="avatar">
+                    <img src="assets/images/avatar-02.jpg" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
+                  </div>
+                  <span><i class="fa fa-check"></i> LunaMa</span>
+                  <h4>CS-GO 36 Hours Live Stream</h4>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+              <div class="item">
+                <div class="thumb">
+                  <img src="assets/images/clip-04.jpg" alt="">
+                  <div class="hover-effect">
+                    <div class="content">
+                      <div class="live">
+                        <a href="#">Live</a>
+                      </div>
+                      <ul>
+                        <li><a href="#"><i class="fa fa-eye"></i> 1.2K</a></li>
+                        <li><a href="#"><i class="fa fa-gamepad"></i> CS-GO</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="down-content">
+                  <div class="avatar">
+                    <img src="assets/images/avatar-03.jpg" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
+                  </div>
+                  <span><i class="fa fa-check"></i> Areluwa</span>
+                  <h4>Maybe Nathej Allnight Chillin'</h4>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+              <div class="item">
+                <div class="thumb">
+                  <img src="assets/images/clip-01.jpg" alt="">
+                  <div class="hover-effect">
+                    <div class="content">
+                      <div class="live">
+                        <a href="#">Live</a>
+                      </div>
+                      <ul>
+                        <li><a href="#"><i class="fa fa-eye"></i> 1.2K</a></li>
+                        <li><a href="#"><i class="fa fa-gamepad"></i> CS-GO</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="down-content">
+                  <div class="avatar">
+                    <img src="assets/images/avatar-04.jpg" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
+                  </div>
+                  <span><i class="fa fa-check"></i> GangTm</span>
+                  <h4>Live Streaming Till Morning</h4>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="main-button">
+                <a href="streams.html">Discover Top Sellers</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ***** Live Stream End ***** -->
+
+      </div>
+    </div>
+  </div>
+</div>
+</body>
