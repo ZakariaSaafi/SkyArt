@@ -26,7 +26,7 @@ export const login = async (req, res) => {
         if (!artist) {
             return res.status(404).json({ message: 'artist not found' });
         }
-        const validPassword = await bcrypt.compare(password, artist.password);
+        const validPassword =  bcrypt.compare(password, artist.password);
         if (!validPassword) {
             return res.status(401).json({ message: 'Invalid credentials' });
         }
