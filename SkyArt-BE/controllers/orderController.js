@@ -31,6 +31,41 @@ export const createOrder = async (req, res) => {
     }
 };
 
+// Method to add a post to an order
+export const addPostToOrder = async (req, res) => {
+    const { userId, postId, totalAmount } = req.body;
+  
+    try {
+      // Validate the post
+      const post = await Post.findById(postId);
+      if (!post) {
+        return res.status(400).json({ message: `Post with ID ${postId} not found` });
+      }
+  
+      // Check if there's an existing pending order for the user
+      let order = await Order.findOne({ userId, status: 'pending' });
+  
+      if (order) {
+        // Add the post to the existing order
+        order.posts.push({ postId });
+        order.totalAmount += totalAmount;
+      } else {
+        // Create a new order including the post
+        order = new Order({
+          userId,
+          posts: [{ postId }],
+          totalAmount,
+        });
+      }
+  
+      // Save the order
+      const savedOrder = await order.save();
+      res.status(200).json(savedOrder);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  };
+
 // Get all orders
 export const getOrders = async (req, res) => {
     try {
@@ -56,6 +91,15 @@ export const getOrderById = async (req, res) => {
     }
 };
 
+export const getAllPendingOrders = async (req, res) => {
+    try {
+      const pendingOrders = await Order.find({ status: 'pending' });
+      res.status(200).json(pendingOrders);
+    } catch (error) {
+      res.status(500).json({ message: 'Error retrieving pending orders', error });
+    }
+  };
+  
 export const downloadOrderPosts = async (req, res) => {
     const { orderId } = req.params;
     const order = await Order.findById(orderId).populate('posts');

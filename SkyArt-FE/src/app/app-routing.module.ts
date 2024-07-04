@@ -10,6 +10,7 @@ import {UserProfileComponent} from "./UserProfile/user-profile/user-profile.comp
 import {AddNewPostPageComponent} from "./PostPage/add-new-post-page/add-new-post-page.component";
 import {EditProfileComponent} from "./UserProfile/edit-profile/edit-profile.component";
 import {PostDetailPageComponent} from "./PostPage/post-detail-page/post-detail-page.component";
+import { OrdersPageComponent } from './OrderPage/orders-page/orders-page.component';
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: "add-new-post-page", component: AddNewPostPageComponent},
   {path: "categories-search-page", component: CategoriesSearchPageComponent},
   {path: "events-search-page", component: EventSearchPageComponent},
+  {path: "orders-search-page", component: OrdersPageComponent},
   {path: "login-page", component: LoginPageComponent},
   {path: "signup-page", component: SignupPageComponent},
   {path: "profile", component: UserProfileComponent},

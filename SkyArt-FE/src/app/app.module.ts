@@ -18,6 +18,7 @@ import { AddNewPostPageComponent } from './PostPage/add-new-post-page/add-new-po
 import {FormsModule} from "@angular/forms";
 import { EditProfileComponent } from './UserProfile/edit-profile/edit-profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { OrdersPageComponent } from './OrderPage/orders-page/orders-page.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     FooterComponent,
     UserProfileComponent,
     AddNewPostPageComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    OrdersPageComponent
   ],
   imports: [
     BrowserModule,
