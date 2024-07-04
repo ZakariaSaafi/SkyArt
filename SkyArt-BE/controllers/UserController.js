@@ -4,11 +4,12 @@ import  User from '../models/User.js';
 
 export const signup = async (req, res) => {
     try {
-        let imagePath = null;
-        if (req.file) {
-            imagePath = req.file.path;
-    }
+        const imagePath = req.file ? `./public/uploads/${req.file.filename}` : null;
         const { name, email, password } = req.body;
+        const find = await User.findOne({ email });
+        if (find) {
+            res.status(409).json({ message: 'User already exists with this email' });
+        } 
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = new User({ name, email, password: hashedPassword, image: imagePath });
         await user.save();

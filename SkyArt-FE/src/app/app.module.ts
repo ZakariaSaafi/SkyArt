@@ -17,6 +17,8 @@ import { UserProfileComponent } from './UserProfile/user-profile/user-profile.co
 import { AddNewPostPageComponent } from './PostPage/add-new-post-page/add-new-post-page.component';
 import {FormsModule} from "@angular/forms";
 import { EditProfileComponent } from './UserProfile/edit-profile/edit-profile.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { EditProfileComponent } from './UserProfile/edit-profile/edit-profile.co
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     HttpClientModule,
     FormsModule
   ],
