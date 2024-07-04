@@ -15,7 +15,6 @@ export class PostSearchPageComponent implements OnInit {
     this.postService.getPost().subscribe(
       (data:any)=>{
         this.posts = data;
-        console.log(this.posts);
       },error => {
         console.log(error);
         this.errorMsg  = error;
