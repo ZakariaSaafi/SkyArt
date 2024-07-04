@@ -27,6 +27,9 @@ export class PostDetailPageComponent implements OnInit {
   toggleComments() {
     this.showComments = !this.showComments;
   }
+  orderPost() {
+    //Amin -- here you can implement your order code
+  }
 
   addComment() {
     if (this.newComment.trim()) {
