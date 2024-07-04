@@ -19,6 +19,7 @@ import {FormsModule} from "@angular/forms";
 import { EditProfileComponent } from './UserProfile/edit-profile/edit-profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { OrdersPageComponent } from './OrderPage/orders-page/orders-page.component';
+import { CategoryDetailPageComponent } from './CategoryPage/category-detail-page/category-detail-page.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { OrdersPageComponent } from './OrderPage/orders-page/orders-page.compone
     UserProfileComponent,
     AddNewPostPageComponent,
     EditProfileComponent,
-    OrdersPageComponent
+    OrdersPageComponent,
+    CategoryDetailPageComponent
   ],
   imports: [
     BrowserModule,

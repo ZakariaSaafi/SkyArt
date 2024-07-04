@@ -5,14 +5,15 @@
       <h1 class="post-title">{{ post.title }}</h1>
       <p class="post-author">{{ post.description }}</p>
       <p class="post-date">{{ post.createdAt | date }}</p>
+      <p class="post-date" *ngIf="post.likes > 0;" >Likes {{ post.likes}}</p>
     </div>
   </div>
   <div class="post-content">
     <p>{{ post.content }}</p>
   </div>
   <div class="post-footer">
+    <button class="btn-like" *ngIf="post.isAsset" (click)="orderPost()">Order Post</button>
     <button class="btn-like" (click)="likePost()">Like</button>
-    <span>{{ post.likes }} Likes</span>
     <button class="btn-comment" (click)="toggleComments()">Comments</button>
     <div class="comments-section" *ngIf="showComments">
       <div class="comment" *ngFor="let comment of post.comments">

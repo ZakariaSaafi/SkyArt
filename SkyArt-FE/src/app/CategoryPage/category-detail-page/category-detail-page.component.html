@@ -1,0 +1,24 @@
+<div class="category-container header-text">
+  <div class="category-header">
+    <div class="category-info">
+      <h1 class="category-title">{{ category.name }}</h1>
+      <p class="category-result-count">Results: {{ category.resultCount }}</p>
+      <p class="category-created-at">{{ category.createdAt | date }}</p>
+    </div>
+  </div>
+  <div class="category-posts">
+    <h2>Posts</h2>
+    <div *ngIf="category.posts.length > 0; else noPosts">
+      <div class="post" *ngFor="let post of category.posts">
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.description }}</p>
+        <p>{{ post.createdAt | date }}</p>
+        <button class="btn-view-post" (click)="viewPost(post.id)">View Post</button>
+      </div>
+    </div>
+    <ng-template #noPosts>
+      <p>No posts available in this category.</p>
+    </ng-template>
+  </div>
+</div>
+
