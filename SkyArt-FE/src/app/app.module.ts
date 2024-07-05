@@ -46,7 +46,7 @@ import { OrderHistoryPageComponent } from './OrderPage/order-history-page/order-
     HeaderUserComponent,
     OrdersPageComponent,
     CategoryDetailPageComponent,
-    OrderHistoryPageComponent
+    OrderHistoryPageComponent,
   ],
   imports: [
     BrowserModule,

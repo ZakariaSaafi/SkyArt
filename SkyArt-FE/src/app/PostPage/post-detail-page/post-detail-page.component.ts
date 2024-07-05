@@ -12,7 +12,7 @@ import { Order } from 'src/app/OrderPage/model/order.model';
 export class PostDetailPageComponent implements OnInit {
   post: any;
   showComments = false;
-  newComment = '';
+  newComment : any = '';
   userId = '60d21b4567d0d8992e610c84'; // Replace with actual user ID
   totalAmount = 100;
 
