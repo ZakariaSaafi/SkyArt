@@ -4,13 +4,19 @@ import Artist from '../models/Artist.js';
 
 export const signup = async (req, res) => {
     try {
-        const { name, email, password, phoneNumber, biohraphy} = req.body;
+        const imagePath = req.file ? `./public/uploads/${req.file.filename}` : null;
+        const { name, email, password, phoneNumber, bioghraphy} = req.body;
+        const find = await Artist.findOne({ email });
+        if (find) {
+            res.status(409).json({ message: 'Artist already exists with this email' });
+        } 
         const hashedPassword = await bcrypt.hash(password, 10);
-        const artist = new Artist({ name, email, password: hashedPassword, phoneNumber, biohraphy });
+        const artist = new Artist({ name, email, password: hashedPassword, phoneNumber, bioghraphy, image: imagePath });
         await artist.save();
-        res.status(201).json({ message: 'Artist created successfully' });
+        res.status(201).json({ message: 'Artist created successfully', Artist : artist });
     } catch (error) {
         res.status(500).json({ message: 'An error occurred' });
+        console.log(error);
     }
 };
 
@@ -21,7 +27,7 @@ export const login = async (req, res) => {
         if (!artist) {
             return res.status(404).json({ message: 'artist not found' });
         }
-        const validPassword = await bcrypt.compare(password, artist.password);
+        const validPassword =  bcrypt.compare(password, artist.password);
         if (!validPassword) {
             return res.status(401).json({ message: 'Invalid credentials' });
         }
@@ -60,6 +66,19 @@ export const rateArtist = async (req, res) => {
         res.json(artist);
     } catch (err) {
         res.status(400).json({ message: err.message });
+    }
+};
+
+export const getArtistById = async (req, res) => {
+    try {
+        const artistId = req.params.id; // Assuming the ID is passed as a route parameter
+        const artist = await Artist.findById(artistId);
+        if (!artist) {
+            return res.status(404).json({ message: 'Artist not found' });
+        }
+        res.status(200).json({ artist });
+    } catch (error) {
+        res.status(500).json({ message: 'An error occurred' });
     }
 };
 

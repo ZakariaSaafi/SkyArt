@@ -7,7 +7,8 @@ import {PostService} from "../../../services/post/post.service";
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
-  public posts:any;
+  count: number = 8;
+  public posts:any[] = Array(this.count).fill(0);
   public errorMsg:any;
 
   constructor(private postService: PostService) { }
@@ -16,7 +17,7 @@ export class HomepageComponent implements OnInit {
     this.postService.getPost().subscribe(
       (data:any)=>{
         this.posts = data;
-        console.log(this.posts);
+        console.log(this.posts.length);
       },error => {
         console.log(error);
         this.errorMsg  = error;
