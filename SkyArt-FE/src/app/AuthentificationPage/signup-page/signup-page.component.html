@@ -1,21 +1,60 @@
 <div class="auth-container header-text">
   <div class="form-container">
-    <h2>Sign Up</h2>
-    <form (ngSubmit)="onSignup()">
+    <h2>Sign Up User</h2>
+    <form [formGroup]="signupFormUser" (ngSubmit)="onSubmitUser()">
       <div class="form-group">
         <label for="signup-username">Username</label>
-        <input type="text" id="signup-username" name="signup-username" [(ngModel)]="username" placeholder="Choose a username" required>
+        <input id="signup-username" formControlName="name" type="text" placeholder="Choose a username" required>
+        
       </div>
       <div class="form-group">
         <label for="signup-email">Email</label>
-        <input type="email" id="signup-email" name="signup-email" [(ngModel)]="email" placeholder="Enter your email" required>
+        <input type="email" id="signup-email" formControlName="email" placeholder="Enter your email" required>
       </div>
       <div class="form-group">
         <label for="signup-password">Password</label>
-        <input type="password" id="signup-password" name="signup-password" [(ngModel)]="password" placeholder="Create a password" required>
+        <input  type="password" id="signup-password" type="password" formControlName="password" placeholder="Create a password" required>
       </div>
-      <button type="submit" class="btn-submit">Sign Up</button>
+      <div class="form-group">
+        <label for="signup-image">Image</label>
+        <input  id="signup-image" type="file" formControlName="Image" (change)="onFileSelected($event, 'user')"  required>
+      </div>
+      <button class="btn-submit" type="submit" [disabled]="signupFormUser.invalid">Sign Up</button>
     </form>
     <p>Already have an account? <a [routerLink]="['/login-page']">Login</a></p>
   </div>
+
+  <div class="form-container">
+    <h2>Sign Up Artist</h2>
+    <form [formGroup]="signupFormArtist" (ngSubmit)="onSubmitArtist()">
+      <div class="form-group">
+        <label for="signup-username">Username</label>
+        <input id="signup-username" formControlName="name" type="text" placeholder="Choose a username" required>
+        
+      </div>
+      <div class="form-group">
+        <label for="signup-email">Email</label>
+        <input type="email" id="signup-email" formControlName="email" placeholder="Enter your email" required>
+      </div>
+      <div class="form-group">
+        <label for="signup-password">Password</label>
+        <input  type="password" id="signup-password" formControlName="password" placeholder="Create a password" required>
+      </div>
+      <div class="form-group">
+        <label for="signup-Number">Phone Number</label>
+        <input  id="signup-number" type="text" formControlName="phoneNumber" placeholder="Phoner Number" required>
+      </div>
+      <div class="form-group">
+        <label for="signup-Bioghraphy">Bioghraphy</label>
+        <input  id="signup-Bioghraphy" type="textarea" formControlName="bioghraphy" placeholder="Bioghraphy..." required>
+      </div>
+      <div class="form-group">
+        <label for="signup-image">Image</label>
+        <input  id="signup-image" type="file" formControlName="Image" (change)="onFileSelected($event, 'artist')"  required>
+      </div>
+      <button class="btn-submit" type="submit" [disabled]="signupFormArtist.invalid">Sign Up</button>
+    </form>
+    <p>Already have an account? <a [routerLink]="['/login-page']">Login</a></p>
+  </div>
+  
 </div>

@@ -24,12 +24,12 @@ export const getCategories = async (req, res) => {
 
 export const getCategoryById = async (req, res) => {
     try {
-        const postId = req.params.id;
-        const post = await Category.findById(postId);
-        if (!post) {
+        const categoryId = req.params.id;
+        const category = await Category.findById(categoryId);
+        if (!category) {
             return res.status(404).json({ error: 'Category not found' });
         }
-        res.json(post);
+        res.json(category);
     } catch (err) {
         res.status(400).json({ error: err.message });
     }
@@ -37,11 +37,11 @@ export const getCategoryById = async (req, res) => {
 
 export const updateCategory = async (req, res) => {
     try {
-        const postId = req.params.id;
+        const categoryId = req.params.id;
         const { title, description, files, dateCreated, isAsset, assetPrice } = req.body;
         const updatedCategory = await Category.findByIdAndUpdate(
-            postId,
-            { title, description, files, dateCreated, isAsset, assetPrice },
+            categoryId,
+            req.body,
             { new: true }
         );
         if (!updatedCategory) {
@@ -55,8 +55,8 @@ export const updateCategory = async (req, res) => {
 
 export const deleteCategory = async (req, res) => {
     try {
-        const postId = req.params.id;
-        const deletedCategory = await Category.findByIdAndDelete(postId);
+        const categoryId = req.params.id;
+        const deletedCategory = await Category.findByIdAndDelete(categoryId);
         if (!deletedCategory) {
             return res.status(404).json({ error: 'Category not found' });
         }

@@ -17,6 +17,11 @@ import { UserProfileComponent } from './UserProfile/user-profile/user-profile.co
 import { AddNewPostPageComponent } from './PostPage/add-new-post-page/add-new-post-page.component';
 import {FormsModule} from "@angular/forms";
 import { EditProfileComponent } from './UserProfile/edit-profile/edit-profile.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CategoryDetailPageComponent } from './CategoryPage/category-detail-page/category-detail-page.component';
+import {NgxDropzoneModule} from "ngx-dropzone";
+import { HeaderUserComponent } from './HomePage/headerUser/header-user/header-user.component';
+
 
 @NgModule({
   declarations: [
@@ -32,13 +37,17 @@ import { EditProfileComponent } from './UserProfile/edit-profile/edit-profile.co
     FooterComponent,
     UserProfileComponent,
     AddNewPostPageComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    CategoryDetailPageComponent,
+    HeaderUserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxDropzoneModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,6 +10,7 @@ import {UserProfileComponent} from "./UserProfile/user-profile/user-profile.comp
 import {AddNewPostPageComponent} from "./PostPage/add-new-post-page/add-new-post-page.component";
 import {EditProfileComponent} from "./UserProfile/edit-profile/edit-profile.component";
 import {PostDetailPageComponent} from "./PostPage/post-detail-page/post-detail-page.component";
+import {CategoryDetailPageComponent} from "./CategoryPage/category-detail-page/category-detail-page.component";
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: "post-detail-page/:id", component: PostDetailPageComponent},
   {path: "add-new-post-page", component: AddNewPostPageComponent},
   {path: "categories-search-page", component: CategoriesSearchPageComponent},
+  {path: "category-detail-page/:id", component: CategoryDetailPageComponent},
   {path: "events-search-page", component: EventSearchPageComponent},
   {path: "login-page", component: LoginPageComponent},
   {path: "signup-page", component: SignupPageComponent},

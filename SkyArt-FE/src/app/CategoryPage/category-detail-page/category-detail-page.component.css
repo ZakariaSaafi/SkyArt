@@ -1,0 +1,102 @@
+.category-container {
+  max-width: 800px;
+  margin: 150px auto;
+  background: #2c2c2c;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.category-info {
+  color: #fff;
+}
+
+.category-title {
+  font-size: 2em;
+  margin: 0;
+}
+
+.category-result-count, .category-created-at {
+  margin: 5px 0;
+}
+
+.category-posts {
+  color: #ccc;
+}
+
+.category-posts h2 {
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.post {
+  background: #3c3c3c;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.post h3 {
+  color: #fff;
+  margin: 0 0 10px 0;
+}
+
+.post p {
+  color: #ccc;
+  margin: 5px 0;
+}
+
+.btn-view-post {
+  background: #e91e63;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-view-post:hover {
+  background: #c2185b;
+}
+
+.no-posts {
+  color: #ccc;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.add-comment {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.add-comment input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #555;
+  background: #333;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.add-comment button {
+  background: #e91e63;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.add-comment button:hover {
+  background: #c2185b;
+}
