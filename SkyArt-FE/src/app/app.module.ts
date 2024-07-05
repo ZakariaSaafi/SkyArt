@@ -21,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CategoryDetailPageComponent } from './CategoryPage/category-detail-page/category-detail-page.component';
 import {NgxDropzoneModule} from "ngx-dropzone";
 import { HeaderUserComponent } from './HomePage/headerUser/header-user/header-user.component';
+import { AllArtistComponent } from './all-artist/all-artist.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { HeaderUserComponent } from './HomePage/headerUser/header-user/header-us
     AddNewPostPageComponent,
     EditProfileComponent,
     CategoryDetailPageComponent,
+    AllArtistComponent,
     HeaderUserComponent
   ],
   imports: [

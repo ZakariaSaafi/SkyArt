@@ -63,9 +63,10 @@ export class SignupPageComponent implements OnInit {
         formData.append('image', this.dataURLtoFile(this.artistImage, 'artistImage.png'));
       }
       this.AuthService.signupArtist(formData).subscribe(response => {
-        console.log(response);
+        console.log(response.Artist);
         alert('Artist Signup Successful');
-        this.router.navigate(['/profile'], { state: { data: response.artist } });
+        localStorage.setItem('artistData', JSON.stringify(response.Artist));
+        this.router.navigate(['/profile']);
       }, error => {
         console.error(error);
         //alert("Try again, email seems to be existed");
