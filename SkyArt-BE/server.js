@@ -11,19 +11,21 @@ import commentRouter from './routes/comment.route.js';
 import userrouter from './routes/Auth.route.js';
 import artistrouter from './routes/Artist.route.js';
 import feedbackrouter from "./routes/feedback.route.js";
-
-
+import responserouter from "./routes/response.route.js";
+import notificationrouter from "./routes/notification.route.js";
+import followrouter from "./routes/follow.route.js"
 import dotenv from 'dotenv';
-
+import passwordrouter from "./routes/Password.route.js"
 dotenv.config();
-
+import path from 'path';
 const app = express();
-
+import { fileURLToPath } from 'url';
 mongoose.set('debug', true);
 mongoose.Promise = global.Promise;
 
 const URL = process.env.DB_CONNECT;
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 mongoose
   .connect(URL, {family: 4})
   .then(() => {
@@ -32,7 +34,7 @@ mongoose
   .catch(err => {
     console.log(err);
   });
-
+app.use('/public/uploads', express.static(path.join(__dirname, '/public/uploads')));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
@@ -50,10 +52,10 @@ app.use('/user',userrouter);
 app.use('/artist',artistrouter);
 app.use("/comment", commentRouter);
 app.use("/feedback", feedbackrouter);
-
-
-
-
+app.use("/responses", responserouter);
+app.use("/notifications", notificationrouter);
+app.use("/followArtist", followrouter);
+app.use("/password", passwordrouter);
 app.listen(PORT, hostname, ()=>{
     console.log(`server running on http://${hostname}:${PORT}`);
 })

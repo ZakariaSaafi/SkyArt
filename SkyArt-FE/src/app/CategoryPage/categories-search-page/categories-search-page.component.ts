@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {CategoriesService} from "../../../services/category/categories.service";
 
 @Component({
   selector: 'app-categories-search-page',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoriesSearchPageComponent implements OnInit {
 
-  constructor() { }
+  categories :any;
+  public errorMsg:any;
+
+
+  constructor(private categoryService:CategoriesService) { }
 
   ngOnInit(): void {
+    this.categoryService.getCategories().subscribe(
+      (data:any)=>{
+        this.categories = data;
+      },error => {
+        console.log(error);
+        this.errorMsg  = error;
+      }
+    );
   }
 
 }

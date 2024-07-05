@@ -13,6 +13,16 @@ import { LoginPageComponent } from './AuthentificationPage/login-page/login-page
 import { SignupPageComponent } from './AuthentificationPage/signup-page/signup-page.component';
 import { HeaderComponent } from './HomePage/header/header.component';
 import { FooterComponent } from './HomePage/footer/footer/footer.component';
+import { UserProfileComponent } from './UserProfile/user-profile/user-profile.component';
+import { AddNewPostPageComponent } from './PostPage/add-new-post-page/add-new-post-page.component';
+import {FormsModule} from "@angular/forms";
+import { EditProfileComponent } from './UserProfile/edit-profile/edit-profile.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CategoryDetailPageComponent } from './CategoryPage/category-detail-page/category-detail-page.component';
+import {NgxDropzoneModule} from "ngx-dropzone";
+import { HeaderUserComponent } from './HomePage/headerUser/header-user/header-user.component';
+import { AllArtistComponent } from './all-artist/all-artist.component';
+
 
 @NgModule({
   declarations: [
@@ -25,12 +35,21 @@ import { FooterComponent } from './HomePage/footer/footer/footer.component';
     LoginPageComponent,
     SignupPageComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    UserProfileComponent,
+    AddNewPostPageComponent,
+    EditProfileComponent,
+    CategoryDetailPageComponent,
+    AllArtistComponent,
+    HeaderUserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    FormsModule,
+    NgxDropzoneModule
   ],
   providers: [],
   bootstrap: [AppComponent]

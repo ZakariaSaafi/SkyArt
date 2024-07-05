@@ -1,1 +1,32 @@
-<p>login-page works!</p>
+<div class="auth-container header-text">
+  <div class="form-container">
+    <h2>Login As user </h2>
+    <form [formGroup]="loginFormUser" (ngSubmit)="onSubmitUser()">
+      <div class="form-group">
+        <label for="login-email">Email</label>
+        <input type="email" id="login-email" formControlName="email"  placeholder="Enter your email" required>
+      </div>
+      <div class="form-group">
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" formControlName="password"  placeholder="Enter your password" required>
+      </div>
+      <button class="btn-submit" type="submit" [disabled]="loginFormUser.invalid">Login</button>
+    </form>
+    <p>Don't have an account? <a [routerLink]="['/signup-page']">Sign up</a></p>
+  </div>
+  <div class="form-container">
+    <h2>Login As Artist</h2>
+    <form [formGroup]="loginFormArtist" (ngSubmit)="onSubmitArtist()">
+      <div class="form-group">
+        <label for="login-email">Email</label>
+        <input type="email" id="login-email" formControlName="email"  placeholder="Enter your email" required>
+      </div>
+      <div class="form-group">
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" formControlName="password"  placeholder="Enter your password" required>
+      </div>
+      <button class="btn-submit" type="submit" [disabled]="loginFormArtist.invalid">Login</button>
+    </form>
+    <p>Don't have an account? <a [routerLink]="['/signup-page']">Sign up</a></p>
+  </div>
+</div>

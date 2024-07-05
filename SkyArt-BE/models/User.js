@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import bcrypt  from 'bcrypt';
+
 const UserSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -12,6 +14,8 @@ const UserSchema = new mongoose.Schema({
         type: String,
         require : [true]
     },
+    resetPasswordToken: String,
+    resetPasswordExpires: Date,
     isAdmin: {
         type: Boolean,
         default: false
@@ -19,10 +23,21 @@ const UserSchema = new mongoose.Schema({
     image: {
         type: String,
     },
+    followed: [{ 
+        type : String
+      }],
     isBanned: {
         type: Boolean,
         default : false,
     }
+    
 }, {timestamps: true});
+
+UserSchema.pre('save', async function (next) {
+    if (this.isModified('password')) {
+        this.password = await bcrypt.hash(this.password, 10);
+    }
+    next();
+});
 
 export default mongoose.model('User', UserSchema);
