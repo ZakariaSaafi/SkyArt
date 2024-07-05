@@ -7,9 +7,8 @@ import {PostService} from "../../../services/post/post.service";
   styleUrls: ['./post-search-page.component.css']
 })
 export class PostSearchPageComponent implements OnInit {
-  posts = [
-    // Your posts data here
-  ];
+  public posts:any;
+  public errorMsg:any;
 
   artists = [
     { name: 'KenganC', role: 'UI/UX Designer', rating: 4.9, downloads: '2.2K', userRating: 0 },
@@ -17,9 +16,17 @@ export class PostSearchPageComponent implements OnInit {
     { name: 'Areluwa', role: 'UI/UX Designer', rating: 4.1, downloads: '1.2K', userRating: 0 }
   ];
 
-  constructor() { }
+  constructor(private postService: PostService) { }
 
   ngOnInit(): void {
+    this.postService.getPost().subscribe(
+      (data:any)=>{
+        this.posts = data;
+      },error => {
+        console.log(error);
+        this.errorMsg  = error;
+      }
+    );
   }
 
   followArtist(artist: any): void {

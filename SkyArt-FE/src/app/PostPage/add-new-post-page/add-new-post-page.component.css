@@ -43,3 +43,62 @@
 .btn-submit:hover {
   background-color: #c2185b;
 }
+
+.preview-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.custom-dropzone {
+  border: 2px dashed #e91e63;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  text-align: center;
+  height: 300px;
+}
+
+.dropzone-previews {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+ngx-dropzone-image-preview.new-row {
+  clear: both;
+}
+
+.btn-remove-all {
+  background-color: #e91e63;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn-remove-all:hover {
+  background-color: #d81b60;
+}
+
+.btn-submit {
+  background-color: #e91e63;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.btn-submit:hover {
+  background-color: #d81b60;
+}
+
+ngx-dropzone-image-preview {
+  width: 100%;
+  height: auto;
+}
