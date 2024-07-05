@@ -15,7 +15,7 @@
                   <div class="col-lg-3 col-sm-6" *ngFor="let p of posts">
                     <div class="item" [routerLink]="['/post-detail-page']">
                       <img src="assets/images/popular-01.jpg" alt="p.title">
-                      <h4> p.title <br><span>p.description</span></h4>
+                      <h4> {{ p.title }} <br><span>{{ p.description }}</span></h4>
                       <ul>
                         <li><i class="fa fa-star"></i> 4.8</li>
                         <li><i class="fa fa-download"></i> 2.3M</li>
