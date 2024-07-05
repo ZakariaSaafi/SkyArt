@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {signup , login} from '../controllers/UserController.js';
+import {signup , login, getUserById} from '../controllers/UserController.js';
 import multer from "multer";
 
 
@@ -19,5 +19,6 @@ const storage = multer.diskStorage({
 
 router.post('/signup', upload.single('image'), signup);
 router.post('/login', login);
+router.get('/:id',getUserById );
 
 export default router;

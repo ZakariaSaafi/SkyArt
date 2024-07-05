@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class UserProfileComponent implements OnInit {
 
   artist: any;
-  
+  artistImageUrl!: string;
     
 
   constructor() {
@@ -21,6 +21,8 @@ export class UserProfileComponent implements OnInit {
     const storedArtistData = localStorage.getItem('artistData');
     if (storedArtistData) {
       this.artist = JSON.parse(storedArtistData);
+      this.artistImageUrl = `http://localhost:4040/${this.artist.image}`;
+      console.log(this.artistImageUrl)
     } else {
       console.error('No artist data available in localStorage');
     }

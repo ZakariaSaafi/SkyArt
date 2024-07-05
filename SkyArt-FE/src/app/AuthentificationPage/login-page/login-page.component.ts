@@ -32,12 +32,14 @@ export class LoginPageComponent implements OnInit {
       this.AuthService.loginUser(this.loginFormUser.value).subscribe(response => {
         if (response.token) {
           localStorage.setItem('userToken', response.token);
-          console.log('User Login Successful', response.token);
-          this.router.navigate(['/'], { state: { data: response.user } });
+          console.log('User Login Successful', response.token, response.user);
+          localStorage.setItem('userData', JSON.stringify(response.user)); // Store artist data
+          this.router.navigate(['/posts-search-page']);
           
         }
       }, error => {
         console.error('Login failed: ', error);
+        alert("Please make sure of the creadentials")
       });
     }
   }
@@ -54,6 +56,7 @@ export class LoginPageComponent implements OnInit {
         }
       }, error => {
         console.error(error);
+        alert("Please make sure of the creadentials")
       });
     }
   }

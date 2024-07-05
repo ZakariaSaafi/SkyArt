@@ -10,6 +10,7 @@ export class AuthService {
   private UrlArtist:string = 'http://localhost:4040/artist/signup';
   private userLoginUrl:string =  'http://localhost:4040/user/login';
   private artistLoginUrl:string = 'http://localhost:4040/artist/login';
+  private GetAllArtists = 'http://localhost:4040/artist/getAll';
 
   constructor(private http:HttpClient) { }
 
@@ -50,6 +51,9 @@ export class AuthService {
 
   removeArtistToken(): void {
     localStorage.removeItem('artistToken');
+  }
+  getAllArtists(): Observable<any[]> {
+    return this.http.get<any[]>(this.GetAllArtists);
   }
 
 }
