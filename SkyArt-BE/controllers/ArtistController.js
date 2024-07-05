@@ -69,4 +69,17 @@ export const rateArtist = async (req, res) => {
     }
 };
 
+export const getArtistById = async (req, res) => {
+    try {
+        const artistId = req.params.id; // Assuming the ID is passed as a route parameter
+        const artist = await Artist.findById(artistId);
+        if (!artist) {
+            return res.status(404).json({ message: 'Artist not found' });
+        }
+        res.status(200).json({ artist });
+    } catch (error) {
+        res.status(500).json({ message: 'An error occurred' });
+    }
+};
+
 
