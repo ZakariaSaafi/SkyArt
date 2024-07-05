@@ -21,7 +21,18 @@
       </div>
       <div class="form-group">
         <label for="image">Upload Image</label>
-        <input type="file" id="image" name="image" accept="image/*">
+        <!-- ********DROPZONE START ********-->
+        <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+          <ngx-dropzone-label>
+            <div>
+              <h2 style="color: #e91e63; font-weight: normal; font-size: 18px">Drop images here</h2>
+            </div>
+          </ngx-dropzone-label>
+          <div class="preview-container">
+            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files; let i = index" [file]="f" [removable]="true" (removed)="onRemove(f)" [class.new-row]="i % 4 === 0"></ngx-dropzone-image-preview>
+          </div>
+        </div>
+        <button type="button" (click)="removeAll()" class="btn-remove-all">Remove All</button>
       </div>
       <button type="submit" class="btn-submit">Submit Post</button>
     </form>
