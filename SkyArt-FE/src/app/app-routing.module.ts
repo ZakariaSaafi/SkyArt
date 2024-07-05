@@ -12,6 +12,7 @@ import {EditProfileComponent} from "./UserProfile/edit-profile/edit-profile.comp
 import {PostDetailPageComponent} from "./PostPage/post-detail-page/post-detail-page.component";
 import { OrdersPageComponent } from './OrderPage/orders-page/orders-page.component';
 import {CategoryDetailPageComponent} from "./CategoryPage/category-detail-page/category-detail-page.component";
+import { OrderHistoryPageComponent } from './OrderPage/order-history-page/order-history-page.component';
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: "signup-page", component: SignupPageComponent},
   {path: "profile", component: UserProfileComponent},
   {path: "edit-profile", component: EditProfileComponent },
+  {path: "OrdersHistory", component: OrderHistoryPageComponent },
 
 ];
 

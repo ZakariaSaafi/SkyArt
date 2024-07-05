@@ -20,6 +20,7 @@ import { EditProfileComponent } from './UserProfile/edit-profile/edit-profile.co
 import { ReactiveFormsModule } from '@angular/forms';
 import { OrdersPageComponent } from './OrderPage/orders-page/orders-page.component';
 import { CategoryDetailPageComponent } from './CategoryPage/category-detail-page/category-detail-page.component';
+import { OrderHistoryPageComponent } from './OrderPage/order-history-page/order-history-page.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { CategoryDetailPageComponent } from './CategoryPage/category-detail-page
     AddNewPostPageComponent,
     EditProfileComponent,
     OrdersPageComponent,
-    CategoryDetailPageComponent
+    CategoryDetailPageComponent,
+    OrderHistoryPageComponent
   ],
   imports: [
     BrowserModule,
