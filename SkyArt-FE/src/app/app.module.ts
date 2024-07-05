@@ -19,6 +19,7 @@ import {FormsModule} from "@angular/forms";
 import { EditProfileComponent } from './UserProfile/edit-profile/edit-profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CategoryDetailPageComponent } from './CategoryPage/category-detail-page/category-detail-page.component';
+import { AllArtistComponent } from './all-artist/all-artist.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { CategoryDetailPageComponent } from './CategoryPage/category-detail-page
     UserProfileComponent,
     AddNewPostPageComponent,
     EditProfileComponent,
-    CategoryDetailPageComponent
+    CategoryDetailPageComponent,
+    AllArtistComponent
   ],
   imports: [
     BrowserModule,
