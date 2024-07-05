@@ -11,15 +11,10 @@ export class AppComponent implements OnInit{
 
   public isLoggedIn: boolean = false;
   
-  constructor(){}
+  constructor(private auth: AuthService){}
 
   ngOnInit(): void {
 
-    const storedArtistData = localStorage.getItem('artistData');
-    if (storedArtistData) {
-      this.isLoggedIn = true;
-    } else {
-      console.error('No artist data available in localStorage');
-    }
+    this.isLoggedIn = this.auth.isLoggedin;
   }
 }
