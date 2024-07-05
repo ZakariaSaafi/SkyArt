@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,9 @@ export class AuthService {
   private userLoginUrl:string =  'http://localhost:4040/user/login';
   private artistLoginUrl:string = 'http://localhost:4040/artist/login';
   private GetAllArtists = 'http://localhost:4040/artist/getAll';
+  public isLoggedin : boolean = false ;
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private router: Router) { }
 
   signupUser(userData: any): Observable<any> {
     return this.http.post<any>(this.UrlUser, userData);
@@ -55,5 +57,26 @@ export class AuthService {
   getAllArtists(): Observable<any[]> {
     return this.http.get<any[]>(this.GetAllArtists);
   }
-
+  logout() 
+  {
+    this.isLoggedin = false ; 
+    localStorage.clear();
+    this.router.navigate(['/login-page']);
+  }
+  login (loginData:any)
+  {
+    this.loginUser(loginData).subscribe(response => {
+      if (response.token) {
+        localStorage.setItem('userToken', response.token);
+        console.log('User Login Successful', response.token, response.user);
+        localStorage.setItem('userData', JSON.stringify(response.user)); // Store artist data
+        this.router.navigate(['/posts-search-page']);
+        
+      }
+    }, error => {
+      console.error('Login failed: ', error);
+      alert("Please make sure of the creadentials")
+    });
+  }
 }
+
