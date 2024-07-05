@@ -22,7 +22,7 @@ export class EventSearchPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.eventService.getEvents().subscribe(
-      (data:any = [])=>{
+      (data:any)=>{
         this.events = data;
         console.log(this.events);
       },error => {

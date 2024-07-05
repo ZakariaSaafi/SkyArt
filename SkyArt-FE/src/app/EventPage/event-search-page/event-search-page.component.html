@@ -12,9 +12,12 @@
                 <div class="heading-section">
                   <h4><em>Live</em> Events</h4>
                 </div>
-                <table><td><tr><h3>test</h3></tr></td></table>
+                <table *ngFor="let item of events"><td><tr><h3>{{item.title}}</h3></tr></td></table>
+                
                
                 <div class="col-lg-3 col-sm-6" *ngFor="let item of events">
+            
+                  <h4>NGFOR TEST</h4>
                   <div class="item">
                     <div class="thumb">
                       <img src="assets/images/stream-06.jpg" alt="">
@@ -35,7 +38,7 @@
                         <img src="assets/images/avatar-02.jpg" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
                       </div>
                       <span><i class="fa fa-check"></i> LahutaMalc</span>
-                      <h4>{{item.title}}</h4>
+                     
                     </div>
                   </div>
                 </div>

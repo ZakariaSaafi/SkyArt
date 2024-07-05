@@ -5,8 +5,8 @@ import mongoose from 'mongoose';
 export const getEvents = async (req, res, next) => {
     
 try {
-    const event = await Event.find({});
-    res.status(200).json({event});
+    const event = await Event.find();
+    res.status(200).json(event);
 } catch (error) {
     next(error);
 }
@@ -56,7 +56,7 @@ export const deleteEvent = async (req, res) => {
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No event with id: ${id}`);
 
-    await Event.findByIdAndRemove(id);
+    await Event.findByIdAndDelete(id);
 
     res.json({ message: "Event deleted successfully." });
 
