@@ -17,10 +17,11 @@ export const followArtist = async (req, res) => {
             return res.status(404).json({ message: 'User or artist not found' });
         }
 
-        const alreadyfollowed = artist.following.find(r => r.userId === req.body.userId);
-        if (alreadyfollowed) {
-            // Update the existing rating
+        const userAlreadyFollows = user.followed.includes(artistId);
+        const artistAlreadyFollowedByUser = artist.following.includes(userId);
+        if (userAlreadyFollows || artistAlreadyFollowedByUser) {
             return res.status(400).json({ message: 'You already follow this artist' });
+          
         } else {
             // Add a new rating
             user.followed.push(artistId);

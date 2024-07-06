@@ -13,6 +13,7 @@ export class AuthService {
   private artistLoginUrl:string = 'http://localhost:4040/artist/login';
   private GetAllArtists = 'http://localhost:4040/artist/getAll';
   public isLoggedin : boolean = false ;
+  private ArtistById:string = 'http://localhost:4040/artist';
 
   constructor(private http:HttpClient, private router: Router) { }
 
@@ -56,6 +57,9 @@ export class AuthService {
   }
   getAllArtists(): Observable<any[]> {
     return this.http.get<any[]>(this.GetAllArtists);
+  }
+  getArtistById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.ArtistById}/${id}`);
   }
   logout() 
   {

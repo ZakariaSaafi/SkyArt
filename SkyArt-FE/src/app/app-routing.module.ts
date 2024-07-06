@@ -30,6 +30,7 @@ const routes: Routes = [
   {path: "edit-profile", component: EditProfileComponent },
   {path: "all-artist", component: AllArtistComponent },
   {path: "OrdersHistory", component: OrderHistoryPageComponent },
+  {path: 'profile/:id', component: UserProfileComponent}
 
 ];
 
