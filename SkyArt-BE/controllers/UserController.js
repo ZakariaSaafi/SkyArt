@@ -36,18 +36,6 @@ export const login = async (req, res) => {
         res.status(500).json({ message: 'An error occurred' });
     }
 };
-export const getUserById = async (req, res) => {
-    try {
-        const userId = req.params.id; // Assuming the ID is passed as a route parameter
-        const user = await User.findById(userId);
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-        res.status(200).json({ user });
-    } catch (error) {
-        res.status(500).json({ message: 'An error occurred' });
-    }
-};
 
 export const getUserById = async (req, res) => {
     try {
