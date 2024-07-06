@@ -5,8 +5,8 @@ import mongoose from 'mongoose';
 export const getEvents = async (req, res, next) => {
     
 try {
-    const event = await Event.find({});
-    res.status(200).json({event});
+    const event = await Event.find();
+    res.status(200).json(event);
 } catch (error) {
     next(error);
 }

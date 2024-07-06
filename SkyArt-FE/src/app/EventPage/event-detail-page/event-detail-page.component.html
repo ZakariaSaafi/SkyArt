@@ -1,0 +1,17 @@
+<div class="post-container header-text">
+    <div class="post-header">
+      <div class="post-info">
+        <h1 class="post-title">{{ event.title }}</h1>
+        <h4 class="post-author">{{ event.organizedBy }}</h4>
+        <p class="post-date">Start Date : {{ event.fromDate}}</p>
+        <p class="post-date">End date : {{ event.endDate }}</p>
+        <p></p>
+        <p>Link : {{event.link}}</p>
+
+
+        <p class="post-date" *ngIf="event.nbrAttendees > 0;" >Attendees: {{ event.nbrAttendees}}</p>
+      </div>
+    </div>
+  
+</div>
+  

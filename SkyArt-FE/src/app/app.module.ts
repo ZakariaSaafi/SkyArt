@@ -22,6 +22,7 @@ import { CategoryDetailPageComponent } from './CategoryPage/category-detail-page
 import {NgxDropzoneModule} from "ngx-dropzone";
 import { HeaderUserComponent } from './HomePage/headerUser/header-user/header-user.component';
 import { AllArtistComponent } from './all-artist/all-artist.component';
+import { EventDetailPageComponent } from './EventPage/event-detail-page/event-detail-page.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { AllArtistComponent } from './all-artist/all-artist.component';
     EditProfileComponent,
     CategoryDetailPageComponent,
     AllArtistComponent,
-    HeaderUserComponent
+    HeaderUserComponent,
+    EventDetailPageComponent,
   ],
   imports: [
     BrowserModule,
