@@ -1,5 +1,5 @@
 <body >
-<div class="container" *ngIf="isLoggedIn; else elseBlock">
+<div class="container" *ngIf="isLoggedIn || isVisitedArtist; else elseBlock">
   <div class="row">
     <div class="col-lg-12">
       <div class="page-content">
@@ -47,8 +47,8 @@
                 <li><img src="assets/images/game-01.jpg" alt="" class="templatemo-item"></li>
                 <li><h4>{{ p.title }}</h4><span>{{ p.description }}</span></li>
                 <li><h4>Date Created</h4><span>{{ p.createdAt }}</span></li>
-                <li><div class="main-border-button border-no-active"><a [routerLink]="['/post-detail-page', p._id]">View Post</a></div></li>
-                <li><div class="main-border-button border-no-active"><a [routerLink]="['/profile']" (click)="deletePost(p._id)">Delete Post</a></div></li>
+                <li><div class="main-border-button border-no-active"><a style="color: white" [routerLink]="['/post-detail-page', p._id]">View Post</a></div></li>
+                <li><div class="main-border-button border-no-active"><a style="cursor: pointer; color: white" (click)="deletePost(p._id)">Delete Post</a></div></li>
               </ul>
             </div>
           </div>

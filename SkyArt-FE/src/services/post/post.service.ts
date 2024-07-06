@@ -22,9 +22,8 @@ export class PostService {
   public updatePost(postId:any){
     return this.http.patch(this.URL, postId);
   }
-
   public deletePost(postId: any){
-    return this.http.delete(this.URL, postId);
+    return this.http.delete(this.URL + "/"+ postId);
   }
 
   public addPost(formData: any){

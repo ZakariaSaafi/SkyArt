@@ -8,11 +8,17 @@ import { AuthService } from 'src/services/User/auth.service';
   styleUrls: ['./header-user.component.css']
 })
 export class HeaderUserComponent implements OnInit {
-
+  public artist :any;
   constructor(private router: Router, private auth : AuthService) { }
 
   ngOnInit(): void {
+    const storedArtistData = localStorage.getItem('artistData') || localStorage.getItem('ArtistData');
+
+    if (storedArtistData) {
+      this.artist = JSON.parse(storedArtistData);
+      }
   }
+
   logout() {
     this.auth.logout();
   }
