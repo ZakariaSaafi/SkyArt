@@ -1,4 +1,4 @@
-/*import { client } from '../middlewares/paypalConfig.js';
+import { client } from '../middlewares/paypalConfig.js';
 
 export const createPayment = async (req, res) => {
   const { orderId } = req.body;
@@ -27,4 +27,4 @@ export const createPayment = async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
-};*/
+};

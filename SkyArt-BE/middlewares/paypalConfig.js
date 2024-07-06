@@ -1,4 +1,4 @@
-/* import axios from 'axios';
+import axios from 'axios';
 
 const clientId = process.env.PAYPAL_CLIENT_ID;
 const clientSecret = process.env.PAYPAL_CLIENT_SECRET;
@@ -13,18 +13,23 @@ const getToken = async () => {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     });
-    return response.data.access_token;
+    return response.data;
   } catch (error) {
     console.error(error);
   }
 };
 
 export const client = async () => {
-  const token = await getToken();
+  const tokenResponse = await getToken();
+  const accessToken = tokenResponse.access_token;
+  const tokenType = tokenResponse.token_type;
+  const expiresIn = tokenResponse.expires_in;
+
   return {
     headers: {
-      'Authorization': `Bearer ${token}`,
+      'Authorization': `${tokenType} ${accessToken}`,
       'Content-Type': 'application/json'
-    }
+    },
+    expiresIn
   };
-};*/
+};
