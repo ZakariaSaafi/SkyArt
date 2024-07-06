@@ -22,6 +22,13 @@ import { CategoryDetailPageComponent } from './CategoryPage/category-detail-page
 import {NgxDropzoneModule} from "ngx-dropzone";
 import { HeaderUserComponent } from './HomePage/headerUser/header-user/header-user.component';
 import { AllArtistComponent } from './all-artist/all-artist.component';
+import {NotFoundPageComponent} from "./NotFoundPage/not-found-page/not-found-page.component";
+import {OrdersPageComponent} from "./OrderPage/orders-page/orders-page.component";
+import {OrderHistoryPageComponent} from "./OrderPage/order-history-page/order-history-page.component";
+import {PaymentComponent} from "./OrderPage/payment/payment.component";
+import {EventEditComponent} from "./event-edit/event-edit.component";
+import {EventCreateComponent} from "./event-create/event-create.component";
+import {EventDetailPageComponent} from "./EventPage/event-detail-page/event-detail-page.component";
 
 
 @NgModule({
