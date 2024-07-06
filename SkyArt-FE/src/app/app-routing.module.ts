@@ -11,7 +11,9 @@ import {AddNewPostPageComponent} from "./PostPage/add-new-post-page/add-new-post
 import {EditProfileComponent} from "./UserProfile/edit-profile/edit-profile.component";
 import {PostDetailPageComponent} from "./PostPage/post-detail-page/post-detail-page.component";
 import {CategoryDetailPageComponent} from "./CategoryPage/category-detail-page/category-detail-page.component";
-import {AllArtistComponent} from "./all-artist/all-artist.component";
+import {AllArtistComponent} from "./all-artist/all-artist.component"
+import {AddEventComponent} from "./EventPage/add-new-event-page/add-new-event-page.component";
+import {EventDetailPageComponent} from "./EventPage/event-detail-page/event-detail-page.component";
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
@@ -26,6 +28,8 @@ const routes: Routes = [
   {path: "profile", component: UserProfileComponent},
   {path: "edit-profile", component: EditProfileComponent },
   {path: "all-artist", component: AllArtistComponent },
+  {path: "add-new-event-page", component: AddEventComponent},
+  {path: "event-detail-page/:id", component: EventDetailPageComponent}
 
 ];
 
