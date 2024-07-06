@@ -15,6 +15,7 @@ export class UserProfileComponent implements OnInit {
   artistImageUrl: string;
   artistId: string;
   public isLoggedIn: boolean = false;
+  public isVisitedArtist: boolean = false;
 
 
   constructor(private postService:PostService,private route: ActivatedRoute, private authService: AuthService) {
@@ -26,8 +27,10 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     const storedArtistData = localStorage.getItem('artistData') || localStorage.getItem('ArtistData');
 
-    if (localStorage.getItem("artistData") || localStorage.getItem("artistToken")) {
+    if (localStorage.getItem("artistData") || localStorage.getItem("userData") || localStorage.getItem("artistToken")) {
       this.isLoggedIn = true;
+    }else if(localStorage.getItem("ArtistData")){
+        this.isVisitedArtist = true;
     }
 
     if (storedArtistData) {
@@ -91,10 +94,13 @@ export class UserProfileComponent implements OnInit {
       updatedAt: artist.Artist.updatedAt,
       __v: artist.Artist.__v
     }
-};
+  };
 
   deletePost(id:any){
-    this.postService.deletePost(id);
+    this.postService.deletePost(id).subscribe((data:any)=>{
+      console.log(data);
+      window.location.reload();
+    });
   }
 
 
