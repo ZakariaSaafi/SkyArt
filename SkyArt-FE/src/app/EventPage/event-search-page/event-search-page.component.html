@@ -8,40 +8,40 @@
             <div class="col-lg-8">
               <div class="most-popular header-text mt-0">
                 <div class="heading-section">
-                
-          <h2 class="mb-4">Featured Events :</h2>
-          <div class="row" *ngIf="events.length > 0;">
-            <div class="col-lg-3 col-sm-6">
-              <div class="item" [routerLink]="['/event-details-page']">
-          <ul>
-            <li *ngFor="let event of events">
-              <img src="assets/images/popular-01.jpg" alt="e.title">
-              <h4> {{ event.title }} <br><span>{{ event.organizedBy }}</span><br><span>Start :{{ event.fromDate | date:'shortDate' }} End:{{ event.endDate | date:'shortDate' }}</span></h4>
-              <button class="btn delete-btn" (click)="deleteEvent(event._id)">
-                Delete
-              </button>
-              <button class="btn btn-primary ml-3" (click)="updateEvent(event)">
-                Update
-              </button>
-              <button class="btn btn-primary ml-3" (click)="detailEvent(event)">
-                Details
-              </button>
-            </li>
-          </ul>
+                  <h2 class="mb-4">Featured Events :</h2>
+                </div>
+                <div class="row" *ngIf="events.length > 0;"  >
+                  <div class="col-lg-3 col-sm-6" *ngFor="let event of events">
+                    <div class="item" [routerLink]="['/event-details-page']">
+                      <ul>
+                        <li >
+                          <img src="assets/images/popular-01.jpg" alt="{{ event.title }}">
+                          <h4>{{ event.title }} <br><span>{{ event.organizedBy }}</span><br><span>Start: {{ event.fromDate | date:'shortDate' }}<br> End: {{ event.endDate | date:'shortDate' }}</span></h4>
+                          <button class="btn delete-btn" (click)="deleteEvent(event._id)">
+                            Delete
+                          </button>
+                          <button class="btn btn-primary ml-3" (click)="updateEvent(event)">
+                            Update
+                          </button>
+                          <button class="btn btn-primary ml-3" (click)="detailEvent(event)">
+                            Details
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center mt-4">
+                  <button class="btn btn-primary" (click)="goToCreateEvent()">
+                    Create New Event
+                  </button>
+                </div>
               </div>
-            </div></div>
-          <div class="text-center mt-4">
-            <button class="btn btn-primary" (click)="goToCreateEvent()">
-              Create New Event
-            </button>
+            </div>
           </div>
           <!-- ***** Featured Games End ***** -->
-
         </div>
       </div>
     </div>
   </div>
-
-</div>
-</div></div></div>
 </body>
