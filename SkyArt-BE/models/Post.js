@@ -8,7 +8,7 @@ const postSchema = new mongoose.Schema({
         type: String,
         required: [true , 'Please provide description']
     },
-    files: {
+    images: {
         type: [String],
         default: []
     },
@@ -29,6 +29,11 @@ const postSchema = new mongoose.Schema({
     category: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category',
+        required: true
+    },
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         required: true
     }
 }, {timestamps: true});

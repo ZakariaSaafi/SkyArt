@@ -1,5 +1,7 @@
 import Post from "../models/Post.js";
 import Category from "../models/Category.js";
+import Artist from "../models/Artist.js";
+import User from "../models/User.js";
 
 export const addPost = async (req, res) => {
   try {
@@ -47,10 +49,10 @@ export const getPostById = async (req, res) => {
   export const updatePost = async (req, res) => {
     try {
       const postId = req.params.id;
-      const { title, description, files, dateCreated, isAsset, assetPrice } = req.body;
+      const { title, description, images, dateCreated, isAsset, assetPrice } = req.body;
       const updatedPost = await Post.findByIdAndUpdate(
         postId,
-        { title, description, files, dateCreated, isAsset, assetPrice },
+        { title, description, images, dateCreated, isAsset, assetPrice },
         { new: true }
       );
       if (!updatedPost) {
@@ -74,3 +76,21 @@ export const getPostById = async (req, res) => {
       res.status(400).json({ error: err.message });
     }
   };
+
+export const getPostsByOwnerId = async (req, res) => {
+  const ownerId = req.params.ownerId;
+
+  try {
+    const artist = await User.findById(ownerId);
+    if (!artist) {
+      return res.status(404).json({ message: 'Artist not found' });
+    }
+    const posts = await Post.find({ owner: ownerId }).populate('owner', 'name email'); // Optionally populate owner details
+    if (!posts.length) {
+      return res.status(404).json({ message: 'No posts found for this owner' });
+    }
+    res.status(200).json(posts);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error });
+  }
+};

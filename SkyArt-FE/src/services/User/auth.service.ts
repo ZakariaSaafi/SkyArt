@@ -9,10 +9,12 @@ import { Router } from '@angular/router';
 export class AuthService {
   private UrlUser:string = 'http://localhost:4040/user/signup';
   private UrlArtist:string = 'http://localhost:4040/artist/signup';
+  private userIdUrl:string = 'http://localhost:4040/user/';
   private userLoginUrl:string =  'http://localhost:4040/user/login';
   private artistLoginUrl:string = 'http://localhost:4040/artist/login';
   private GetAllArtists = 'http://localhost:4040/artist/getAll';
   public isLoggedin : boolean = false ;
+  private ArtistById:string = 'http://localhost:4040/artist';
 
   constructor(private http:HttpClient, private router: Router) { }
 
@@ -57,12 +59,20 @@ export class AuthService {
   getAllArtists(): Observable<any[]> {
     return this.http.get<any[]>(this.GetAllArtists);
   }
-  logout() 
-  {
-    this.isLoggedin = false ; 
-    localStorage.clear();
-    this.router.navigate(['/login-page']);
+
+  getArtistById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.ArtistById}/${id}`);
   }
+
+  logout()
+  {
+    this.isLoggedin = false ;
+    localStorage.clear();
+    this.router.navigate(['/login-page']).then(() => {
+      window.location.reload();
+    });
+  }
+
   login (loginData:any)
   {
     this.loginUser(loginData).subscribe(response => {
@@ -71,12 +81,16 @@ export class AuthService {
         console.log('User Login Successful', response.token, response.user);
         localStorage.setItem('userData', JSON.stringify(response.user)); // Store artist data
         this.router.navigate(['/posts-search-page']);
-        
+
       }
     }, error => {
       console.error('Login failed: ', error);
       alert("Please make sure of the creadentials")
     });
+  }
+
+  public getUserById(ownerId:string): Observable<any> {
+      return this.http.get<any>(`${this.userIdUrl}/${ownerId}`);
   }
 }
 

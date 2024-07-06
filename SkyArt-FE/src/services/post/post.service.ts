@@ -14,6 +14,11 @@ export class PostService {
   public getPostById(id:any){
     return this.http.get(this.URL + "/" + id);
   }
+
+  public getPostByOwnerId(ownerId:any){
+    return this.http.get(this.URL + "/owner/" + ownerId);
+  }
+
   public updatePost(postId:any){
     return this.http.patch(this.URL, postId);
   }

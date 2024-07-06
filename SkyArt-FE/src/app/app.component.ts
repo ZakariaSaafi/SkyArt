@@ -10,11 +10,13 @@ export class AppComponent implements OnInit{
   title = 'SkyArt-FE';
 
   public isLoggedIn: boolean = false;
-  
+
   constructor(private auth: AuthService){}
 
   ngOnInit(): void {
 
-    this.isLoggedIn = this.auth.isLoggedin;
+    if(localStorage.getItem("artistData") || localStorage.getItem("artistToken")){
+      this.isLoggedIn = true;
+    }
   }
 }
