@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import {PostService} from "../../../services/post/post.service";
+import {AuthService} from "../../../services/User/auth.service";
 
 @Component({
   selector: 'app-user-profile',
@@ -8,14 +10,14 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  posts:any;
+  posts: any;
   artist: any;
   artistImageUrl: string;
   artistId: string;
   public isLoggedIn: boolean = false;
 
 
-  constructor(private route: ActivatedRoute, private authService: AuthService) {
+  constructor(private postService:PostService,private route: ActivatedRoute, private authService: AuthService) {
     this.artist = null;
     this.artistImageUrl = '';
     this.artistId = '';
@@ -24,7 +26,7 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     const storedArtistData = localStorage.getItem('artistData') || localStorage.getItem('ArtistData');
 
-    if(localStorage.getItem("artistData") || localStorage.getItem("artistToken")){
+    if (localStorage.getItem("artistData") || localStorage.getItem("artistToken")) {
       this.isLoggedIn = true;
     }
 
@@ -42,11 +44,11 @@ export class UserProfileComponent implements OnInit {
       });
     }
 
-  if(this.isLoggedIn){
+    if (this.isLoggedIn) {
       this.postService.getPostByOwnerId(this.artist._id).subscribe(
-        (data:any)=>{
+        (data: any) => {
           console.log(this.artist._id)
-          this.posts=data;
+          this.posts = data;
         }
       )
     }
@@ -62,11 +64,12 @@ export class UserProfileComponent implements OnInit {
         // Store artist data in localStorage
         localStorage.setItem('ArtistData', JSON.stringify(this.artist));
       },
-      (error:any) => {
+      (error: any) => {
         console.error('Error fetching artist details', error);
       }
     );
   }
+
   transformArtistData(artist: any): any {
     // Extract relevant fields and rename if necessary
     return {
