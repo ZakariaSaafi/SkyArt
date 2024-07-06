@@ -47,10 +47,10 @@ export const getPostById = async (req, res) => {
   export const updatePost = async (req, res) => {
     try {
       const postId = req.params.id;
-      const { title, description, files, dateCreated, isAsset, assetPrice } = req.body;
+      const { title, description, images, dateCreated, isAsset, assetPrice } = req.body;
       const updatedPost = await Post.findByIdAndUpdate(
         postId,
-        { title, description, files, dateCreated, isAsset, assetPrice },
+        { title, description, images, dateCreated, isAsset, assetPrice },
         { new: true }
       );
       if (!updatedPost) {

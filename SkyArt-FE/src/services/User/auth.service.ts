@@ -57,11 +57,13 @@ export class AuthService {
   getAllArtists(): Observable<any[]> {
     return this.http.get<any[]>(this.GetAllArtists);
   }
-  logout() 
+  logout()
   {
-    this.isLoggedin = false ; 
+    this.isLoggedin = false ;
     localStorage.clear();
-    this.router.navigate(['/login-page']);
+    this.router.navigate(['/login-page']).then(() => {
+      window.location.reload();
+    });
   }
   login (loginData:any)
   {
@@ -71,7 +73,7 @@ export class AuthService {
         console.log('User Login Successful', response.token, response.user);
         localStorage.setItem('userData', JSON.stringify(response.user)); // Store artist data
         this.router.navigate(['/posts-search-page']);
-        
+
       }
     }, error => {
       console.error('Login failed: ', error);

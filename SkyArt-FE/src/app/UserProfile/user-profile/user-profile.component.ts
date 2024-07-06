@@ -11,10 +11,11 @@ export class UserProfileComponent implements OnInit {
 
   artist: any;
   artistImageUrl!: string;
-    
+  public isLoggedIn:boolean=false;
+
 
   constructor() {
-    
+
   }
 
   ngOnInit(): void {
@@ -26,9 +27,13 @@ export class UserProfileComponent implements OnInit {
     } else {
       console.error('No artist data available in localStorage');
     }
+    if(localStorage.getItem("artistData") || localStorage.getItem("artistToken")){
+      this.isLoggedIn = true;
+    }
   }
+
 }
 
- 
+
 
 

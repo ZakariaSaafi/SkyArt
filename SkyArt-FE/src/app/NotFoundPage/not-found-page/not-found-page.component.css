@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
+
+*{
+
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arvo', serif;
+  transition: all .5s;
+}
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+.container{
+  position: relative;
+  width: 800px;
+  height: 100%;
+  margin-top: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.container h1{
+  position: relative;
+  top: 40px;
+  color: #e75e8d;
+  font-size: 5rem;
+  z-index: 1000;
+}
+.container .imgBx{
+  position: relative;
+  width: 810px;
+  height: 500px;
+  /* background: url(assets/images/img.gif);*/
+  bottom: 60px;
+}
+.container .detail{
+  position: relative;
+  top: -70px;
+  color: #e75e8d;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container .detail h3{
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+  margin: 10px;
+  color:#e75e8d;
+}
+.container .detail span{
+  text-transform: lowercase;
+  margin-bottom: 20px;
+}
+.container .detail button{
+  width: 150px;
+  height: 50px;
+  outline: none;
+  border: none;
+  text-transform: capitalize;
+  background: #e75e8d;
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+.container .detail button:hover{
+  color: #e75e8d;
+  background: #efefef;
+}

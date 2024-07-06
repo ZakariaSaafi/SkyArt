@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
-  
+
   loginFormUser!: FormGroup;
   loginFormArtist!: FormGroup;
   //artist: any;
@@ -30,7 +30,7 @@ export class LoginPageComponent implements OnInit {
   onSubmitUser(): void {
     if (this.loginFormUser.valid) {
       this.AuthService.login(this.loginFormUser.value);
-      
+
     }
   }
   onSubmitArtist(): void {
@@ -42,7 +42,9 @@ export class LoginPageComponent implements OnInit {
           console.log('Artist Login Successful');
           console.log(response.token);
           //this.artist = response.Artist;
-          this.router.navigate(['/profile']);
+          this.router.navigate(['/profile']).then(() => {
+            window.location.reload();
+          });
         }
       }, error => {
         console.error(error);

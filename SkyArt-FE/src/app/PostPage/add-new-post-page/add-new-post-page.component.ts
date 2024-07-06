@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {NgxDropzoneChangeEvent} from "ngx-dropzone";
+import {CategoriesService} from "../../../services/category/categories.service";
+import {PostService} from "../../../services/post/post.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../../../services/User/auth.service";
 
 @Component({
   selector: 'app-add-new-post-page',
@@ -7,14 +11,47 @@ import {NgxDropzoneChangeEvent} from "ngx-dropzone";
   styleUrls: ['./add-new-post-page.component.css']
 })
 export class AddNewPostPageComponent implements OnInit {
-
+ public post : any;
+ public categories : any = [];
+ public selectecCategory: any;
+ public form:FormGroup|any;
+ public isLoggedIn:boolean=false;
+ //dropzone
  public files: File[] = [];
  public maxFiles: number = 8;
 
-  constructor() { }
+
+  constructor(private formBuilder:FormBuilder, public authService:AuthService ,private categoryService:CategoriesService, private postService: PostService) { }
 
   ngOnInit(): void {
+    this.categoryService.getCategories().subscribe(
+      (data:any)=>{
+        this.categories = data;
+      },(error)=>{
+        console.log(error);
+      }
+    );
+    if(localStorage.getItem("artistData") || localStorage.getItem("artistToken")){
+      this.isLoggedIn = true;
+    }
+    this.form = this.formBuilder.group({
+      title:['',Validators.required],
+      category :['',Validators.required],
+      description:['',Validators.required],
+      images :['',Validators.required],
+    });
+
   }
+
+  onSubmit(form:any){
+    this.postService.addPost(form.value).subscribe((data:any)=>{
+      console.log(data);
+      this.post=data;
+      alert("Successfully added new post!");
+      this.form.reset();
+    })
+  }
+
   onSelect(event: NgxDropzoneChangeEvent) {
     const totalFiles = this.files.length + event.addedFiles.length;
     if (totalFiles <= this.maxFiles) {
@@ -36,5 +73,10 @@ export class AddNewPostPageComponent implements OnInit {
     removeAll() {
       this.files = [];
     }
+
+  categoryChange(e:any){
+    console.log(e.target.value);
+    this.selectecCategory=e.target.value;
+  }
 
 }

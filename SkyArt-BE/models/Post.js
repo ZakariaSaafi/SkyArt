@@ -8,7 +8,7 @@ const postSchema = new mongoose.Schema({
         type: String,
         required: [true , 'Please provide description']
     },
-    files: {
+    images: {
         type: [String],
         default: []
     },
