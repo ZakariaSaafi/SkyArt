@@ -26,6 +26,7 @@ const routes: Routes = [
   {path: "profile", component: UserProfileComponent},
   {path: "edit-profile", component: EditProfileComponent },
   {path: "all-artist", component: AllArtistComponent },
+  {path: 'profile/:id', component: UserProfileComponent}
 
 ];
 

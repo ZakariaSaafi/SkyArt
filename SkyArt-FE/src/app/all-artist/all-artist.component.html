@@ -1,25 +1,22 @@
-
-    <div class="container header-text">
-        <div class="artist-list">
-          <div class="item" *ngFor="let artist of artists">
-            <div class="artist-details">
-              <img [src]="artist.image" alt="{{ artist.name }}">
-              <div class="artist-info">
-                <h4>{{ artist.name }}</h4>
-                <h6>Rate : {{ artist.averageRating }}</h6>
-                <div class="rating-selector">
-                    <select [(ngModel)]="artist.rating" (change)="updateRating(artist, artist.rating)">
-                      <option *ngFor="let option of [1, 2, 3, 4, 5]" [value]="option">{{ option }}</option>
-                    </select>
-                  </div>
-                <div class="follow-button">
-                  <button (click)="followArtist(artist)">Follow</button>
-                </div>
-              </div>
-            </div>
+<div class="container header-text">
+  <div class="artist-list">
+    <div class="item" *ngFor="let artist of artists">
+      <div class="artist-details">
+        <img [src]="artist.image" alt="{{ artist.name }}">
+        <div class="artist-info">
+          <!-- Use routerLink to navigate to artist profile with artist's id -->
+          <h4><a [routerLink]="['/profile', artist._id]">{{ artist.name }}</a></h4>
+          <h6 *ngIf="artist.averageRating !== null">Rate: {{ artist.averageRating }}</h6>
+          <div class="rating-selector">
+            <select [(ngModel)]="artist.rating" (change)="rateArtist(artist, artist.rating)">
+              <option *ngFor="let option of [1, 2, 3, 4, 5]" [value]="option">{{ option }}</option>
+            </select>
+          </div>
+          <div class="follow-button">
+            <button (click)="followArtist(artist)">Follow</button>
           </div>
         </div>
       </div>
-
-
-  
+    </div>
+  </div>
+</div>

@@ -19,10 +19,10 @@
   .item {
     width: calc(33.33% - 20px); /* Adjust the width of each item */
     /* 33.33% width for three items per row with 20px gap */
-    background-color: rgba(240, 240, 240, 0.8); /* Transparent background with some opacity */
+    background-color: #e91e63; /* Transparent background with some opacity */
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+    box-shadow: 0 0 10px #e91e63;/* Optional: Adds a subtle shadow */
   }
   
   .artist-details {

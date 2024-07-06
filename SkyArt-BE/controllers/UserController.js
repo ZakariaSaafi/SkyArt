@@ -13,7 +13,7 @@ export const signup = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = new User({ name, email, password: hashedPassword, image: imagePath });
         await user.save();
-        res.status(201).json({ message: 'User created successfully' });
+        res.status(201).json({ message: 'User created successfully' , user : user});
     } catch (error) {
         res.status(500).json({ message: 'An error occurred' });
     }
