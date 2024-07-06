@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   private UrlUser:string = 'http://localhost:4040/user/signup';
   private UrlArtist:string = 'http://localhost:4040/artist/signup';
+  private userIdUrl:string = 'http://localhost:4040/user/';
   private userLoginUrl:string =  'http://localhost:4040/user/login';
   private artistLoginUrl:string = 'http://localhost:4040/artist/login';
   private GetAllArtists = 'http://localhost:4040/artist/getAll';
@@ -79,6 +80,10 @@ export class AuthService {
       console.error('Login failed: ', error);
       alert("Please make sure of the creadentials")
     });
+  }
+
+  public getUserById(ownerId:string): Observable<any> {
+      return this.http.get<any>(`${this.userIdUrl}/${ownerId}`);
   }
 }
 

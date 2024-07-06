@@ -23,7 +23,9 @@
             <li><a [routerLink]="['/posts-search-page']">Posts</a></li>
             <li><a [routerLink]="['/categories-search-page']">Categories</a></li>
             <li><a [routerLink]="['/events-search-page']">Events</a></li>
-            <li><a (click)="logout()">Logout<img src="assets/images/pngwing.com.png" alt=""></a></li>
+            <li><a [routerLink]="['/profile']">Profile</a></li>
+            <li><a [routerLink]="['/orders-search-page']">Cart</a></li>
+            <li><a style="cursor:pointer;" (click)="logout()">Logout<img src="assets/images/pngwing.com.png" alt=""></a></li>
           </ul>
           <a class='menu-trigger'>
             <span>Menu</span>
