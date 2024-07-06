@@ -18,11 +18,14 @@ import { AddNewPostPageComponent } from './PostPage/add-new-post-page/add-new-po
 import {FormsModule} from "@angular/forms";
 import { EditProfileComponent } from './UserProfile/edit-profile/edit-profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { OrdersPageComponent } from './OrderPage/orders-page/orders-page.component';
 import { CategoryDetailPageComponent } from './CategoryPage/category-detail-page/category-detail-page.component';
 import {NgxDropzoneModule} from "ngx-dropzone";
 import { HeaderUserComponent } from './HomePage/headerUser/header-user/header-user.component';
 import { AllArtistComponent } from './all-artist/all-artist.component';
 import { NotFoundPageComponent } from './NotFoundPage/not-found-page/not-found-page.component';
+import { OrderHistoryPageComponent } from './OrderPage/order-history-page/order-history-page.component';
+import { PaymentComponent } from './OrderPage/payment/payment.component';
 
 
 @NgModule({
@@ -43,7 +46,11 @@ import { NotFoundPageComponent } from './NotFoundPage/not-found-page/not-found-p
     CategoryDetailPageComponent,
     AllArtistComponent,
     HeaderUserComponent,
-    NotFoundPageComponent
+    NotFoundPageComponent,
+    OrdersPageComponent,
+    CategoryDetailPageComponent,
+    OrderHistoryPageComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
