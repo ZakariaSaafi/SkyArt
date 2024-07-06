@@ -87,7 +87,8 @@ export class SignupPageComponent implements OnInit {
       this.AuthService.signupUser(formData).subscribe(response => {
         console.log(response);
         alert('User Signup Successful');
-        this.router.navigate(['/'], { state: { data: response.user } });
+        localStorage.setItem('userData', JSON.stringify(response.Artist));
+        this.router.navigate(['/']);
       }, error => {
         console.error(error);
         alert("Try again, email seems to be existed");

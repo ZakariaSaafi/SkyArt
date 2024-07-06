@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {PostService} from "../../../services/post/post.service";
+import { AuthService } from 'src/services/User/auth.service';
 
 @Component({
   selector: 'app-homepage',
@@ -11,7 +12,7 @@ export class HomepageComponent implements OnInit {
   public posts:any[] = Array(this.count).fill(0);
   public errorMsg:any;
 
-  constructor(private postService: PostService) { }
+  constructor(private postService: PostService, public auth : AuthService) { }
 
   ngOnInit(): void {
     this.postService.getPost().subscribe(
