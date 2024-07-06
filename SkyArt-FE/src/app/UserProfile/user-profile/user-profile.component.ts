@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from '../../../services/User/auth.service';
+import {PostService} from "../../../services/post/post.service";
+import {AuthService} from "../../../services/User/auth.service";
 
 @Component({
   selector: 'app-user-profile',
@@ -8,11 +10,14 @@ import { AuthService } from '../../../services/User/auth.service';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
+  posts: any;
   artist: any;
   artistImageUrl: string;
   artistId: string;
+  public isLoggedIn: boolean = false;
 
-  constructor(private route: ActivatedRoute, private authService: AuthService) {
+
+  constructor(private postService:PostService,private route: ActivatedRoute, private authService: AuthService) {
     this.artist = null;
     this.artistImageUrl = '';
     this.artistId = '';
@@ -20,9 +25,16 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     const storedArtistData = localStorage.getItem('artistData') || localStorage.getItem('ArtistData');
+
+    if (localStorage.getItem("artistData") || localStorage.getItem("artistToken")) {
+      this.isLoggedIn = true;
+    }
+
     if (storedArtistData) {
       this.artist = JSON.parse(storedArtistData);
       this.artistImageUrl = `http://localhost:4040/${this.artist.image}`;
+      console.log(this.artistImageUrl)
+
     } else {
       // Retrieve artist ID from route parameter
       this.route.params.subscribe(params => {
@@ -31,7 +43,17 @@ export class UserProfileComponent implements OnInit {
         this.fetchArtistDetails(this.artistId);
       });
     }
+
+    if (this.isLoggedIn) {
+      this.postService.getPostByOwnerId(this.artist._id).subscribe(
+        (data: any) => {
+          console.log(this.artist._id)
+          this.posts = data;
+        }
+      )
+    }
   }
+
 
   fetchArtistDetails(id: string): void {
     // Call your artist service to fetch artist details by ID
@@ -42,11 +64,12 @@ export class UserProfileComponent implements OnInit {
         // Store artist data in localStorage
         localStorage.setItem('ArtistData', JSON.stringify(this.artist));
       },
-      error => {
+      (error: any) => {
         console.error('Error fetching artist details', error);
       }
     );
   }
+
   transformArtistData(artist: any): any {
     // Extract relevant fields and rename if necessary
     return {
@@ -67,6 +90,15 @@ export class UserProfileComponent implements OnInit {
       createdAt: artist.Artist.createdAt,
       updatedAt: artist.Artist.updatedAt,
       __v: artist.Artist.__v
-    };
+    }
+};
+
+  deletePost(id:any){
+    this.postService.deletePost(id);
+  }
+
+
 }
-}
+
+
+

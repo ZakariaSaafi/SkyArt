@@ -13,7 +13,7 @@
               </div>
                 <div class="row" *ngIf="posts.length > 0; else emptyPanel">
                   <div class="col-lg-3 col-sm-6" *ngFor="let p of posts">
-                    <div class="item" [routerLink]="['/post-detail-page']">
+                    <div class="item" style="cursor: pointer" [routerLink]="['/post-detail-page', p._id]">
                       <img src="assets/images/popular-01.jpg" alt="p.title">
                       <h4> {{ p.title }} <br><span>{{ p.description }}</span></h4>
                       <ul>

@@ -3,6 +3,7 @@ import {PostService} from "../../../services/post/post.service";
 import {ActivatedRoute} from "@angular/router";
 import { OrderService } from 'src/app/OrderPage/service/order.service';
 import { Order } from 'src/app/OrderPage/model/order.model';
+import {AuthService} from "../../../services/User/auth.service";
 
 @Component({
   selector: 'app-post-detail-page',
@@ -11,17 +12,20 @@ import { Order } from 'src/app/OrderPage/model/order.model';
 })
 export class PostDetailPageComponent implements OnInit {
   post: any;
+  owner:any;
   showComments = false;
   newComment : any = '';
   userId = '60d21b4567d0d8992e610c84'; // Replace with actual user ID
   totalAmount = 100;
 
-  constructor(private postService: PostService, private route: ActivatedRoute, private orderService : OrderService) { }
+  constructor(private postService: PostService, private route: ActivatedRoute, private orderService : OrderService, private authService:AuthService ) { }
 
   ngOnInit(): void {
     const postId = this.route.snapshot.paramMap.get('id');
     this.postService.getPostById(postId).subscribe(data => {
       this.post = data;
+      this.owner = this.authService.getUserById(this.post.owner);
+      console.log(this.owner);
     });
   }
 

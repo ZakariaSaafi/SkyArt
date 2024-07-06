@@ -1,28 +1,28 @@
 
-<div class="add-post-container header-text">
+<div class="add-post-container header-text" *ngIf="isLoggedIn; else elseBlock">
     <h2>Add New Post</h2>
-    <form class="add-post-form">
+    <form class="add-post-form" [formGroup]="form" enctype="multipart/form-data">
       <div class="form-group">
         <label for="title">Post Title</label>
-        <input type="text" id="title" name="title" placeholder="Enter your post title" required>
+        <input type="text" id="title" formControlName="title" name="title" placeholder="Enter your post title" required>
+        <div class="alert alert-danger mt-1" role="alert" *ngIf="form.controls['title'].dirty && form.hasError('required','title')">*Post must have a title</div>
       </div>
       <div class="form-group">
         <label for="category">Category</label>
-        <select id="category" name="category" required>
-          <option value="technology">Technology</option>
-          <option value="photoshop">Photoshop</option>
-          <option value="ui-ux">UI/UX</option>
-          <option value="art">Art</option>
+        <select id="category" formControlName="category" (change)="categoryChange($event)" name="category" required>
+          <option *ngFor="let c of categories" [value]="c._id">{{c.name}}</option>
         </select>
+        <div class="alert alert-danger" role="alert" *ngIf="form.controls['category'].dirty && form.hasError('required','category')">*Please select a category</div>
       </div>
       <div class="form-group">
         <label for="content">Content</label>
-        <textarea id="content" name="content" rows="10" placeholder="Write your post content here" required></textarea>
+        <textarea id="content" formControlName="description" name="content" rows="10" placeholder="Write your post content here" required></textarea>
+        <div class="alert alert-danger" role="alert" *ngIf="form.controls['description'].dirty && form.hasError('required','description')">*Post must have a description</div>
       </div>
       <div class="form-group">
-        <label for="image">Upload Image</label>
+        <label>Upload Image</label>
         <!-- ********DROPZONE START ********-->
-        <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+        <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" formControlName="images" (change)="onSelect($event)">
           <ngx-dropzone-label>
             <div>
               <h2 style="color: #e91e63; font-weight: normal; font-size: 18px">Drop images here</h2>
@@ -34,6 +34,11 @@
         </div>
         <button type="button" (click)="removeAll()" class="btn-remove-all">Remove All</button>
       </div>
-      <button type="submit" class="btn-submit">Submit Post</button>
+      <!-- ********DROPZONE END ********-->
+
+      <button type="submit" class="btn-submit" [disabled]="!form.valid" (click)="onSubmit(form.value)">Submit Post</button>
     </form>
   </div>
+<ng-template #elseBlock>
+  <app-not-found-page></app-not-found-page>
+</ng-template>
