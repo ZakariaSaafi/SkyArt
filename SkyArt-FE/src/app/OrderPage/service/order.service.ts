@@ -103,20 +103,37 @@ export class OrderService {
     );
   }
   getPendingOrdersByUserId(userId: string): Observable<Order[]> {
-    const url = `${this.apiUrl}/orders/pending/${userId}`;
+    const url = `${this.apiUrl}/pending/${userId}`;
     return this.http.get<Order[]>(url);
   }
   removePostFromOrder(orderId: string, postId: string): Observable<any> {
-    const url = `${this.apiUrl}/orders/${orderId}/posts/${postId}`;
+    const url = `${this.apiUrl}/${orderId}/posts/${postId}`;
     return this.http.delete<any>(url);
   }
+
+
+
+
+
+  // testing ----------------------------------------------------------------
+
+
   deletePostFromPendingOrder(userId: string, postId: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/orders/pending/${userId}/posts/${postId}`);
+    console.log('deletePostFromPendingOrder userId',userId);
+    console.log('deletePostFromPendingOrder postId',postId);
+
+    return this.http.delete(`${this.apiUrl}/pending/${userId}/posts/${postId}`);
   }
 
+
+
+
+  // tested ----------------------------------------------------------------
   getConfirmedOrdersByUserId(userId: string): Observable<Order[]> {
     console.log("userId",userId)
     return this.http.get<Order[]>(`${this.apiUrl}/confirmed-orders/${userId}`);
     
   }
+
+
 }

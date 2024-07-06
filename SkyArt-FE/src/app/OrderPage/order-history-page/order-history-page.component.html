@@ -17,8 +17,7 @@
                       <li *ngFor="let p of confirmedOrders">
                         <span>1</span>
                         <img src="assets/images/avatar-01.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                        <h6><i class="fa fa-check"></i> {{p._id}}</h6> <br>
-                        <h6>---------- Creation Date :     {{p.createdAt}}</h6>
+                        <h6><i class="fa fa-check"></i> Created {{p.createdAt}}</h6>
                         <div class="main-button">
                          <a href="#" (click)="downloadOrderPosts(p._id)">Download</a>
                         </div>

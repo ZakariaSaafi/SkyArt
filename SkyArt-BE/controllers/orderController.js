@@ -69,7 +69,8 @@ export const addPostToOrder = async (req, res) => {
 
   // Controller method to get all posts for an order by order ID
 export const getOrderPosts = async (req, res) => {
-  
+  const postsArray = [];
+
     try {
         const order = await Order.findOne({ status: 'pending' }).sort({ date: -1 }).populate({
             path: 'posts.postId',
@@ -81,7 +82,19 @@ export const getOrderPosts = async (req, res) => {
         return res.status(400).json({ message: 'Order not found' });
       }
 
-      res.status(200).json(order.posts);
+      order.posts.forEach(async (post) => {
+        const foundPost = await Post.findById(post.postId._id);
+        if (foundPost) {
+          postsArray.push(foundPost);
+        }
+      });
+  
+      await Promise.all(order.posts.map((post) => Post.findById(post.postId._id)))
+      .then((posts) => {
+        res.status(200).json(posts);
+      });
+
+      //res.status(200).json(order.posts);
     } catch (error) {
       console.error('Error fetching order posts:', error);
       res.status(500).json({ message: 'Error fetching order posts', error });

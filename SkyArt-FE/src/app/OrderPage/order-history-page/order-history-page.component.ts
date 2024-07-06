@@ -15,19 +15,25 @@ export class OrderHistoryPageComponent implements OnInit {
   ngOnInit(): void {
     this.loadConfirmedOrders();
   }
+  
+  
   downloadOrderPosts(orderId: any): void {
     this.orderService.downloadOrderPosts(orderId);
   }
-  loadConfirmedOrders(): void {
-    this.orderService.getConfirmedOrdersByUserId(this.userId).subscribe(
-      (orders: Order[]) => {
-        this.confirmedOrders = orders;
-        console.log("this.confirmedOrders",this.confirmedOrders);
-      },
-      (error) => {
-        console.error('Error fetching confirmed orders:', error);
-      }
-    );
-  }
+
+
+    // Tested -------------------------
+
+    loadConfirmedOrders(): void {
+      this.orderService.getConfirmedOrdersByUserId(this.userId).subscribe(
+        (orders: Order[]) => {
+          this.confirmedOrders = orders;
+          console.log("this.confirmedOrders",this.confirmedOrders);
+        },
+        (error) => {
+          console.error('Error fetching confirmed orders:', error);
+        }
+      );
+    }
 
 }

@@ -6,6 +6,8 @@ import { map, catchError } from 'rxjs/operators';
 import { Post } from '../model/post.model';
 import { PayPalLink, PayPalOrderResponse } from '../model/paypal.model';
 import { Router } from '@angular/router';
+import axios from 'axios';
+
 
 
 @Component({
@@ -14,7 +16,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./orders-page.component.css']
 })
 export class OrdersPageComponent implements OnInit {
-  pendingOrderPosts : Post[];
+  pendingOrderPosts : Post[] = [];
   currentOrder: Order;
   userId : string = "60d21b4567d0d8992e610c84";
 
@@ -24,28 +26,9 @@ export class OrdersPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchPendingOrderPosts();
-    
+    console.log('this.pendingOrderPosts ',this.pendingOrderPosts )
 
-  }
 
-  fetchPendingOrderPosts(): void {
-    this.orderService.getOrderPosts().subscribe(
-      (data: Post[]) => {
-        this.pendingOrderPosts = data;
-      },
-      (error) => {
-        console.error('Failed to fetch pending order posts:', error);
-      }
-    );
-  }
-  getOrderPosts() {
-    this.orderService.getOrderPosts().subscribe(
-      (post: Post[]) => {
-        this.pendingOrderPosts = post;      },
-      error => {
-        console.error('Failed to find order posts:', error);
-      }
-    );
   }
 
 
@@ -84,7 +67,53 @@ export class OrdersPageComponent implements OnInit {
 
   deletePost(postId: string): void {
     this.orderService.deletePostFromPendingOrder(this.userId, postId).subscribe(response => {
-      this.fetchPendingOrderPosts(); // Refresh the list after deletion
+      this.router.navigate(['/orders-search-page']).then(() => {
+        window.location.reload();
+      });
     });
   }
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  // Testing -------------------------
+  getOrderPosts() {
+    this.orderService.getOrderPosts().subscribe(
+      (post: Post[]) => {
+        this.pendingOrderPosts = post;      
+        console.log('this.pendingOrderPosts',this.pendingOrderPosts )
+      },
+      error => {
+        console.error('Failed to find order posts:', error);
+      }
+    );
+  }
+
+  fetchPendingOrderPosts(): void {
+    this.orderService.getOrderPosts().subscribe(
+      (post: Post[]) => {
+        this.pendingOrderPosts = post;
+        console.log('this.pendingOrderPosts',this.pendingOrderPosts )
+
+      },
+      (error) => {
+        console.error('Failed to fetch pending order posts:', error);
+      }
+    );
+  }
 }
+

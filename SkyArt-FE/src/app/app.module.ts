@@ -24,6 +24,7 @@ import {NgxDropzoneModule} from "ngx-dropzone";
 import { HeaderUserComponent } from './HomePage/headerUser/header-user/header-user.component';
 import { AllArtistComponent } from './all-artist/all-artist.component';
 import { OrderHistoryPageComponent } from './OrderPage/order-history-page/order-history-page.component';
+import { PaymentComponent } from './OrderPage/payment/payment.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { OrderHistoryPageComponent } from './OrderPage/order-history-page/order-
     OrdersPageComponent,
     CategoryDetailPageComponent,
     OrderHistoryPageComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
