@@ -1,28 +1,20 @@
-import { Router } from 'express';
-import { createFeedback, getFeedback, updateFeedback, deleteFeedback } from '../controllers/feedback.controller.js';
-import { body } from 'express-validator';
+import express from 'express';
+import { sendMessage, getMessages, getUsersWithMessages, getUserMessages, updateFeedback } from '../controllers/feedback.controller.js';
+import { protect, authMiddleware } from '../middlewares/authMiddleware.js';
 
-const router = Router();
+const router = express.Router();
 
-router.post(
-  '/',
-  [
-    body('userId').isMongoId(),
-    body('targetId').isMongoId(),
-    body('onModel').isIn(['Post', 'Event', 'User']),
-    body('text').isString()
-  ],
-  createFeedback
-);
+router.route('/')
+    .post(authMiddleware, sendMessage)
+    .get(authMiddleware, getMessages);
 
-router.get('/', getFeedback);
+router.route('/users')
+    .get(authMiddleware, getUsersWithMessages);
 
-router.put(
-  '/:id',
-  [body('text').isString()],
-  updateFeedback
-);
+router.route('/user/:userId')
+    .get(authMiddleware, getUserMessages);
 
-router.delete('/:id', deleteFeedback);
+router.route('/:id')
+    .patch(authMiddleware, updateFeedback);
 
 export default router;
