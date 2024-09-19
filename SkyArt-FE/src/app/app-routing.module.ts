@@ -10,10 +10,11 @@ import {UserProfileComponent} from "./UserProfile/user-profile/user-profile.comp
 import {AddNewPostPageComponent} from "./PostPage/add-new-post-page/add-new-post-page.component";
 import {EditProfileComponent} from "./UserProfile/edit-profile/edit-profile.component";
 import {PostDetailPageComponent} from "./PostPage/post-detail-page/post-detail-page.component";
-import { OrdersPageComponent } from './OrderPage/orders-page/orders-page.component';
 import {CategoryDetailPageComponent} from "./CategoryPage/category-detail-page/category-detail-page.component";
 import {AllArtistComponent} from "./all-artist/all-artist.component";
-import { OrderHistoryPageComponent } from './OrderPage/order-history-page/order-history-page.component';
+import {EventEditComponent} from "./event-edit/event-edit.component";
+import {EventCreateComponent} from "./event-create/event-create.component";
+import {EventDetailPageComponent} from "./EventPage/event-detail-page/event-detail-page.component";
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
@@ -23,15 +24,14 @@ const routes: Routes = [
   {path: "categories-search-page", component: CategoriesSearchPageComponent},
   {path: "category-detail-page/:id", component: CategoryDetailPageComponent},
   {path: "events-search-page", component: EventSearchPageComponent},
-  {path: "orders-search-page", component: OrdersPageComponent},
   {path: "login-page", component: LoginPageComponent},
   {path: "signup-page", component: SignupPageComponent},
   {path: "profile", component: UserProfileComponent},
   {path: "edit-profile", component: EditProfileComponent },
   {path: "all-artist", component: AllArtistComponent },
-  {path: "OrdersHistory", component: OrderHistoryPageComponent },
-  {path: 'profile/:id', component: UserProfileComponent}
-
+  { path: 'events/:id', component: EventEditComponent },
+  { path: 'addevent', component: EventCreateComponent },
+  {path: 'event-detail-page/:id', component: EventDetailPageComponent }
 ];
 
 @NgModule({
