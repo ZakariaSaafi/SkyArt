@@ -43,6 +43,8 @@ app.use(express.static("public"));
 
 const PORT = process.env.PORT || 9090;
 const hostname = "127.0.0.1";
+
+//API
 app.use("/category", categoryRoute);
 app.use("/posts", postRouter);
 app.use("/event",eventRouter);
