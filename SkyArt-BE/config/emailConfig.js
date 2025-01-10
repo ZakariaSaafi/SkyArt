@@ -1,19 +1,20 @@
 import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail', // Vous pouvez utiliser un autre service comme SendGrid, Mailgun, etc.
+  service: 'gmail', // You can use another service like SendGrid, Mailgun, etc.
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS
   }
 });
 
-const sendEmail = (to, subject, text) => {
+const sendEmail = (to, subject, text, html) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to,
     subject,
-    text
+    text,
+    html // Add the HTML content here
   };
 
   transporter.sendMail(mailOptions, (error, info) => {

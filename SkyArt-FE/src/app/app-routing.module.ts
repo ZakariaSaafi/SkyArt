@@ -32,6 +32,8 @@ const routes: Routes = [
   {path: "OrdersHistory", component: OrderHistoryPageComponent },
   {path: 'profile/:id', component: UserProfileComponent}
 
+ 
+  { path: 'feedback', loadChildren: () => import('./feedbacks/feedbacks.module').then(m => m.FeedbacksModule) }
 ];
 
 @NgModule({

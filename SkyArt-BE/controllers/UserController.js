@@ -37,7 +37,6 @@ export const login = async (req, res) => {
     }
 };
 
-
 export const getUserById = async (req, res) => {
     try {
         const userId = req.params.id; // Assuming the ID is passed as a route parameter
